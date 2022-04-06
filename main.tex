@@ -1,0 +1,383 @@
+\documentclass[12pt, a4paper]{article}
+\usepackage[utf8]{inputenc}
+\usepackage{hyperref}
+\usepackage{graphicx}
+\usepackage{amsmath}
+
+\hypersetup{
+    colorlinks=true,
+    linkcolor=black,
+    urlcolor=cyan,
+    }
+
+
+\title{Intelligenza Artificiale}
+\author{Soldà Matteo }
+\date{A.A. 2021-2022}
+
+\begin{document}
+
+\begin{figure}
+    \centering
+    \includegraphics[width=0.50\textwidth]{Logo_Università_Padova}
+\end{figure}
+
+\maketitle
+
+\newpage
+\begin{abstract}
+    Questo riassunto rappresenta una parte del materiale di studio fornito dal Prof. Zorzi e dal Prof. Testolin nell'Anno Accademico 2021-2022 e non ha lo scopo di sostituire le spiegazioni dei docenti, ma di fornire un breve riassunto finalizzato al ripasso.\\ In questo documento verranno inoltre riportati alcuni dei link consigliati dal Professore e che hanno lo scopo di approfondire alcuni argomenti del corso; oltre ai link appena citati, ne ho aggiunti altri che ritengo possano essere utili per una migliore comprensione di alcuni argomenti che sono inerenti esclusivamente alla psicologia e non all'informatica.
+    Nel caso fossero presenti dei refusi o errori vari, potete scrivermi all'indirizzo mail \href{mailto:matteo.solda.1@studenti.unipd.it}{matteo.solda.1@studenti.unipd.it} o su Telegram a @Matt2000eo.\\
+    Buono studio!
+\end{abstract}
+
+\newpage
+\tableofcontents
+
+\newpage
+\section{Libro di Testo}
+Il libro utilizzato per il corso è disponibile in formato E-Book \href{https://infoscience.epfl.ch/record/63947}{qui}.
+
+\section{Introduzione}
+Nel 1950, Alan Turing si propose come problema di capire se ciò che è meccanico può manifestare un comportamento intelligente.\\
+La nascita dell'IA, sia come termine che come disciplina, viene fatta risalire al un convegno fondativo del 1956 tenutosi al Dartmouth College (USA).\\
+Per definizione, l'Intelligenza Artificiale è definita come "lo studio di agenti intelligenti che percepiscono il loro ambiente e producono azioni volte a massimizzare la probabilità di successo nel raggiungere i loro scopi". \\
+Ma cosa sono nel concreto le IA? \href{https://www.raiplay.it/video/2018/08/Intelligenze-artificiali-29082018-f27a3b85-338c-46ba-97ae-2574c47a40a4.html}{Clicca qui} per vedere un servizio di Superquark intitolato "\textit{Intelligenze Artificiali}" registrato in UniPD.
+
+\subsection{Due Prospettive}
+Lo scopo dell'IA può essere definito come quello di costruire degli "agenti intelligenti", e quindi si studia si potrebbe riprodurre in un computer i processi mentali. Questo può portare a due prospettive:
+\begin{itemize}
+    \item Prospettiva Ingegneristica: costruire dispositivi più intelligenti dotati di funzioni e capacità che si avvicinino all'intelligenza umana, con lo scopo di \textbf{imitare} l'intelligenza umana. Risulta quindi di minore importanza capire cosa succeda realmente nel cervello.
+    \item Prospettiva delle Scienze Cognitive: costruire e testare \textbf{ipotesi specifiche} sui meccanismi che si presentano in modo da avvicinarsi il più possibile al comportamento umano, anche quando questo non è ottimale.
+\end{itemize}
+
+\subsection{IA Debole e IA Forte}
+L'intelligenza artificiale stretta (\textit{Narrow Artificial Intelligence}), nota anche come IA debole, si riferisce a qualsiasi intelligenza artificiale in grado di eguagliare o superare un essere umano in un compito strettamente definito e strutturato.\\\\
+L'intelligenza artificiale generale (\textit{Artificial General Intelligence - AGI}), nota anche come IA forte, dovrebbe consentire alle macchine di applicare conoscenze e abilità in diversi contesti anche nuovi. Tutt'oggi, questo obiettivo non è stato realizzato e non è detto che sarà mai possibile.
+
+\subsection{IA Simbolica e IA Neurale}
+In base alla definzione di "intelligenza", possiamo distinguere due tipi di Intelligenza Artificiale:
+\begin{itemize}
+    \item IA Simbolica (Classica): se l'intelligenza viene vista come la manipolazione di strutture simboliche di rappresentazione della conoscenza, l'IA  si può realizzare in un computer scrivendo un programma.
+    \item IA Neurale: se l'intelligenza viene vista come l'attività di neuroni nel formare complesse reti neurali, allora l'IA si può realizzare simulando delle reti neurali.
+\end{itemize}
+
+\newpage
+\section{La Computazione Neurale}
+
+\subsection{Definizione}
+La Computazione Neurale (\textit{Neural Computing}) è l'elaborazione dell'informazione eseguite da reti di neuroni, biologici o artificiali. Essa rappresenta un modello alternativo alla computazione digitale.\\
+Le reti neurali biologiche sono formate da neuroni reciprocamente influenzati attraverso delle connessioni (sinapsi) che li collegano.\\
+Ogni neurone rileva un certo insieme di condizioni e segnala ciò che ha rilevato attraverso la sua \textit{frequenza di scarica}. Essi possono ricevere segnali da altri neuroni e formare quindi degli strati di rilevatori più complessi.\\
+Le interazioni tra neuroni sono adattive e si modificano attraverso l'apprendimento.
+
+\subsection{Codifica dell'Informazione nel Neurone Biologico}
+Normalmente, il neurone si sintonizza su di uno stimolo preferito, che quando è presente produce la più forte tra le varie risposte.\\
+Il \textit{campo recettivo} del neurone è quella porzione di spazio sensoriale che attiva la risposta del neurone.
+
+\newpage
+\section{Reti Neurali Artificiali}
+
+\subsection{Definizione}
+Le reti neurali artificiali sono sistemi di elaborazione inspirati dal funzionamento dei sistemi biologici caratterizzati dalla capacità di apprendere compiti complessi con lo scopo di catture i principi di base dalla complessità biologica, piuttosto che riprodurla per intero.
+
+\subsection{Architettura}
+Una rete neurale artificiale ha un'architettura ad elaborazione distribuita e parallela che utilizza:
+\begin{itemize}
+    \item Semplici unità di elaborazione
+    \item Elevato grado di interconnessione
+    \item Semplici messaggi numerici scalari (segnale analogico)
+    \item Interazioni adattive tra elementi
+\end{itemize}
+
+Questa struttura deve possedere delle importanti proprietà, ossia:
+\begin{itemize}
+    \item Apprendere dall'esperienza ma con la possibilità di rispondere anche in situazioni nuove
+    \item Assenza di conoscenze esplicite riguardanti il problema
+    \item Adattabilità in situazioni caotiche e/o caotiche (presenza di disturbi nei dati)
+\end{itemize}
+
+\subsection{Elementi di Base}
+Gli elementi fondamentali di una rete neurale artificiale sono:
+\begin{itemize}
+    \item Neuroni (Unità di Elaborazione): fungono da rilevatori che segnalano attraverso la loro attivazione
+    \item Reti Neurali: connettono, coordinano, amplificano e selezionano i pattern di attivazione sui neuroni
+    \item Apprendimento: organizza le reti per eseguire compiti e per sviluppare modelli interni dell'ambiente.
+\end{itemize}
+
+\subsubsection{Il Neurone}
+Un neurone formale è un modello matematico che cerca di catturare gli aspetti fondamentali del funzionamento neuronale.\\
+Questi elementi comunicano con gli altri neuroni unidirezionalmente o bidirezionalmente con gli altri neuroni tramite delle connessioni, le quali hanno un peso indicante la forza della connessione.\\
+La connessione può essere rappresentata da un valore positivo (eccitatorio) o negativo (inibitorio).\\
+L'input che un neurone riceve da ciascuno dei neuroni a sé collegati è rappresento moltiplicando il segnale proveniente da quel neurone per il preso sulla connessione.\\
+L'input totale del neurone è la sommatoria delle attivazione che il neurone riceve da tutti gli altri neuroni.\\
+Lo stato di attivazione finale viene calcolato attraverso la funzione di attivazione (o di output) del neurone. Normalmente si utilizza la funzione sigmoide, la quale presenta sempre valori compresi nell'intervallo [0,1].\\
+Matematicamente, possiamo definire l'input totale al neurone \textbf{i} come:
+\[net_i=\sum_j^N(w_{ij} x_j(-b))\]
+dove:
+\begin{itemize}
+    \item \(net_i\) è l'input totale al neurone \(i\), ossia la sommatoria di tutti gli input
+    \item \(x_j\) è il segnale in arrivo dal neurone \(j\)
+    \item \(w_{ij}\) è il peso sinaptico della connessione tra il neurone \(j\) e il neurone ricevente \(i\)
+    \item \(b\) è la soglia o \textit{bias} del neurone
+\end{itemize}
+
+\subsubsection{Reti di Neuroni}
+L'architettura della rete serve per identificare l'organizzazione in gruppi o in strati dei neuroni, ossia la topologia della rete, e il modo in cui i neuroni sono collegati tra loro, ossia lo schema di connettività.
+\href{https://www.youtube.com/watch?v=aircAruvnKk}{Cliccando qui}, si potrà visionare un video del canale Youtube \href{https://www.youtube.com/channel/UCYO_jab_esuFRV4b17AJtAw}{\textit{"3Blue1Brown"}} che spiega abbastanza nel dettaglio cosa sia una rete neurale.
+
+\paragraph{Topologia della Rete}
+\begin{itemize}
+    \item Lo strato di input è formato dalle unità che ricevono direttamente informazioni dall'ambiente
+    \item Lo strato di output è formato dalle unità di output finale della rete
+    \item Le unità che non si trovano in contatto diretto con input o output sono chiamate unità nascoste. Le unità di input e output sono invece chiamate unità visibili
+    \item Quando ci sono più di due strati nascosti, parleremo di rete profonda (\textit{Deep Network})
+\end{itemize}
+
+\paragraph{Schema di Connettività}
+\begin{itemize}
+    \item Reti \textit{feed-forward}: ci sono solo connessioni unidirezionali da unità di input a unità nascoste a unità di output (\textit{bottom-up})
+    \item Reti ricorrenti: ci sono connessioni bidirezionali in cui l'attivazione può propagarsi all'indietro (\textit{top-down} o \textit{feedback})
+    \item Reti interamente ricorrenti: come le reti ricorrenti, ma ci sono anche connessioni intra-stato (tra neuroni dello stesso livello)
+\end{itemize}
+
+\subsection{Differenze tra Reti Neurali Biologiche e Artificiali}
+Nel tipico neurone artificiale, risultano mancanti: l'organizzazione spaziali dei contatti sinaptici, differenziazione tra neuroni eccitatori e inibitori, tipi diversi di sinapsi e la mancanza della dinamica del neurone con potenziali di azione.\\
+Quest'ultima mancanza può essere brevemente approfondita cliccando \href{https://it.wikipedia.org/wiki/Rete_neurale_spiking}{qui}, link del Professore riportato nelle slide.\\\\
+Nella tipica rete artificiale, risultano mancanti: la struttura laminare e l'organizzazione colonnare, l'organizzazione in mappe topografiche.
+Rimane inoltre la differenza di scala tra la rete biologica e quella artificiale, infatti, normalmente, nel cervello ci sono \(10^{11}\) neuroni, di cui ogni singolo neurone comunica direttamente con circa \(10^{4}\) altri neuroni.
+
+\newpage
+\section{Apprendimento Automatico}
+Il \textit{Machine Learning} comprende un insieme di metodi e algoritmi che permettono ad un software di apprendere dall'esperienza.\\
+Esistono diversi tipi di apprendimento, i quali hanno scopi differenti e algoritmi completamente diversi. La qualità dell'apprendimento tipicamente migliora all'aumentare del numero di esempi disponibili per l'addestramento (efficiente su \textit{Big Data}.\\
+Le reti neurali artificiali rappresentato una classe importante di algoritmi di apprendimento.
+
+\subsection{Tre Tipi di Apprendimento}
+Immaginiamo un sistema (biologico o artificiale) che riceve una serie di input sensoriali \(x_1,x_2,x_3,x_4,x_n\):
+\begin{itemize}
+    \item Apprendimento Supervisionato: viene fornito anche l'output desiderato \(y_1,y_2,y_3,y_m\). Lo scopo è quello di imparare a produrre l'output corretto da un nuovo input.
+    \item Apprendimento Non-Supervisionato: lo scopo è quello di costruire rappresentazioni dell'input scoprendone le proprietà più importanti e informative. Queste possono essere in seguito utilizzate per il ragionamento, la decisione, la comunicazione, etc.
+    \item Apprendimento per Rinforzo: il sistema produce azioni che hanno un effetto sul mondo, e riceve rinforzi (o punizioni) \(r_1,r_2,r_3,r_z\). Lo scopo è quello di imparare ad agire in un modo che massimizza il rinforzo nel lungo termine.
+\end{itemize}
+
+\subsection{Apprendimento nelle Reti Neurali}
+L'apprendimento in una rete neurale consiste nel trovare l'insieme di pesi delle connessioni che permette alla rete di produrre la risposta appropriata per un determinato input. La forma più semplice è la regola di Hebb,la quale afferma che "\textit{se due neuroni collegati tra loro sono contemporaneamente attivi, l'efficacia sinaptica della connessione viene aumentata}".\\
+L'apprendimento Hebbiano è biologicamente plausibile e corrisponde al fenomeno del \href{https://it.wikipedia.org/wiki/Long_term_potentiation}{Potenziamento a Lungo Termine (\textit{Long Term Potentiation - LTP})}.\\
+Formalmente, se vogliamo associare un pattern di input \(x\) con un pattern di output \(y\), otterremo che \[\Delta w_{ij} = \eta y_ix_j\]
+Nella sua forma originale, la regola può solo rinforzare le connessioni, inoltre i valori dei pesi non hanno un limite. Varianti della regola di Hebb superano questi limiti (per esempio, la regola della covarianza per le \href{https://it.wikipedia.org/wiki/Rete_di_Hopfield}{reti di Hopfield}.\\
+Da notare che generalmente le regole di apprendimento seguaci della regola Hebbiana sono utilizzate prevalentemente in un conteso di apprendimento non supervisionato.\\
+Generalmente, in una rete neurale si ha che:
+\begin{itemize}
+    \item Valori iniziali dei pesi sinaptici assegnati in modo casuale
+    \item Presentazione ripetuta dei pattern di addestramento
+    \begin{itemize}
+        \item Apprendimento Supervisionato: input + target
+        \item Apprendimento Non-Supervisionato: input
+    \end{itemize}
+    \item L'apprendimento consiste nella modifica dei pesi, ovvero il calcolo di \(\Delta w\) rispetto a \(w\). L'aggiornamento può avvenire dopo ogni pattern (\textit{online learning}) oppure dopo ogni epoca (\textit{batch learning})
+    \item Per non stravolgere o cancellare le conoscenze precedentemente apprese, viene utilizzata solo una frazione della modifica sinaptica calcolata, definita come la costante \(\eta\), definita come \textit{learning rate} (o tasso di apprendimento), formalmente definita come \(w^t_{ij}=w^{t-1}_{ij}+\eta \Delta w^t_{ij}\)
+\end{itemize}
+
+\subsection{Reti Neurali e Memoria}
+Una rete non possiede memoria, proprio per questo i pesi delle connessioni (pesi sinaptici) rappresentato comunque le conoscenze a lungo termine, dato che essi non si cancellano, ma si modificano gradualmente solo se c'è ulteriore apprendimento.\\
+L'attivazione dei neuroni, invece, è un fenomeno temporaneo e specifico per lo stimolo presentato e si esaurisce causandone la scomparsa. Tuttavia, se l'attivazione non cessa bruscamente, può influenzare l'elaborazione dello stimolo successivo (processo alla base dei fenomeni di \href{https://it.wikipedia.org/wiki/Priming_(psicologia)}{\textit{priming}}.\\
+Alcuni compiti cognitivi richiedono di ricordare per breve tempo informazioni che non sono più presenti utilizzando la memoria di lavoro (o a breve termine). In una rete neurale questo si può realizzare mantenendo attivi determinati neuroni anche quando l'input non è più presente.
+
+\subsection{Il Problema dell'Interferenza}
+\subsubsection{Apprendimento Associativo AB-AC}
+Il compito di apprendimento associativo AB-AC porta alla luce il problema dell'interferenza nella memoria.\\
+Prima di andare avanti, descriviamo il problema dell'apprendimento associativo AB-AC:\\
+Vi sono due liste di coppie di parole: c'è la lista AB dove ogni coppia è costituita da una parola appartenente ad A e una parola appartenente a B, e una seconda lista AC dove ogni coppia è costituita da una parola appartenente ad A e una appartenente a C.\\
+I partecipanti, dopo aver studiato la lista AB devono rievocare la parola B appropriata per ogni parola A, poi studiano la lista AC e vengono interrogati su entrambe le liste.
+
+\subsubsection{Interferenza Catastrofica}
+Se una rete neurale viene sottoposta al compito di apprendimento associativo AB-AC si ottiene un effetto di interferenza ancora maggiore che negli esseri umani. Questo fenomeno viene denominato \textit{interferenza catastrofica} o \textit{catastrophic forgetting}.\\
+I due fattori che determinano l'interferenza in una rete neurale sono il \href{https://www.sciencedirect.com/science/article/abs/pii/S1364661316300432}{grado di sovrapposizione} e il tasso di apprendimento elevato.\\
+Il grado di sovrapposizione delle rappresentazioni torna utile però in quanto permette l'integrazione e la generalizzazione delle conoscenze.\\
+Il cervello umano ha risolto questo problema evolvendo due sistemi di apprendimento separati e complementari: ippocampo e neocorteccia.
+
+\subsubsection{Due Sistemi Complementari di Apprendimento e Memoria}
+L'ippocampo è la componente specializzata nell'apprendimento rapido e non soggetto a interferenza, esso funziona tramite rappresentazioni sparse.\\
+La neocorteccia apprende lentamente e integra gradualmente le esperienze estraendo le conoscenze generali sul mondo, essa funziona tramite rappresentazioni distribuite.
+
+\newpage
+\section{Apprendimento Supervisionato}
+Tra i concetti principali troviamo:
+\begin{itemize}
+    \item Classificazione: associare i dati di input a categorie (es: cani, gatti, pesci, uccelli)
+    \item Regressione: associare i dati di input a valori continui (es: in base alla classificazione, l'input si classifica sopra o sotto una determinata funzione continua?)
+    \item Clustering: scoprire raggruppamenti nei dati di input
+\end{itemize}
+
+Nell'apprendimento supervisionato, la rete impara ad associare un dato input ad uno specifico output. L'output desiderato deve essere fornito esplicitamente alla rete durante l'apprendimento e tutti gli esempi per l'apprendimento devono essere etichettati (\textit{labeled data}).\\
+Gli algoritmi principali sono: percettrone, regola delta e error back-propagation. Esse vengono applicate tramite classificazione e regressione. Esse sono relazionate con metodi statistici come il \href{https://it.wikipedia.org/wiki/Modello_lineare_generalizzato}{Modello Lineare Generalizzato (GLM)}, la \href{https://it.wikipedia.org/wiki/Regressione_lineare}{regressione} e l'\href{https://it.wikipedia.org/wiki/Analisi_discriminante}{Analisi Discriminante}.
+
+\subsection{La Correzione dell'Errore}
+Il \textit{training set} è l'insieme di esempi su cui addestrare la rete, e per i quali possiamo definire input, output e target.\\
+L'addestramento avviene presentando un esempio, calcolando l'input sulla base dei parametri attuali (pesi sinaptici), confrontato l'output con il target per determinare lo scostamento per poi modificare i parametri (ottimizzazione) e diminuire lo scostamento.\\
+Con il testing si verificano le prestazioni, inclusa la capacità di generalizzare su dati che non sono stati utilizzati per l'addestramento.
+
+\subsection{Il Percettrone}
+Il percettrone è il primo modello di rete neurale con pesi sinaptici modificabili da un algoritmo di apprendimento. Sviluppato da Frank Rosenblatt nel 1958, la rete ha \(N\) input che codificano l'esempio presentato con valori \(x_i\) ed un singolo neurone di output che codifica la risposta in modo binario. 
+L'output verrà formalmente descritto come:
+\[
+    y = 
+    \begin{cases} 
+        1, & \mbox{se } \sum^N_{i=0}w_ix_i \geq 0 \\
+        -1, & \mbox{altrimenti}
+    \end{cases}
+\]
+dove \(\theta\) rappresenta la soglia del neurone che serve a definire la posizione del "gradino". Può capitare di non trovare il segno \(\theta\) perché si utilizzano \(w_0\) e \(x_0\) per rappresentare rispettivamente il peso e il valore fisso del bias.
+
+\subsubsection{L'Apprendimento nel Percettrone}
+Per ogni esempio presentato, l'output \(y\) viene confrontato con la risposta desiderata (\textit{target}) \(t\) che codifica la classe di appartenenza.
+\begin{itemize}
+    \item se \(y=t\), allora si procede al prossimo esempio senza modificare nessun peso
+    \item se \(y<>t\), allora i pesi sinaptici vengono modificati con \(\Delta w_i=\eta tx_i\) dove \(\eta\) è il learning rate 
+\end{itemize}
+
+Da notare che i pesi delle connessioni da cui è arrivato l'input aumentano se il target è \([+1]\) e diminuiscono se il target è \([-1]\). Nel caso di un target binario, è sufficiente sostituire \(t\) con \(t-y\).\\
+
+\subsubsection{Teorema della Convergenza del Percettrone}
+Per un qualunque problema linearmente separabile verrà trovata la soluzione in un numero finito di passi.
+
+\subsection{La Regola Delta}
+Questa regola viene parzialmente spiegata \href{https://www.youtube.com/watch?v=IHZwWFHWa-w}{qui}, video consigliato dal professore sul Moodle.
+Questa si può applicare quando le unità di output hanno una funzione di attivazione continua e differenziabile. Essa permette di descrivere la prestazione con una funzione che misura l'errore della rete (\textit{funzione di errore o funzione di costo}) che si basa sullo scarto quadratico medio tra risposta desiderata ed output effettivo: \[E_w=\sum_\mu \sum_i (t^\mu_i-y^\mu_i)^2\]
+L'apprendimento consiste nel minimizzare la funzione di costo E, che dipende unicamente dal valore delle connessioni sinaptiche. Quindi si modificano i pesi nella direzione opposta al gradiente della funzione stessa (\textit{discesa del gradiente}): \[\Delta w_{ij}= - \frac{\delta E}{\delta w_{ij}}\]
+La forma finale della regola dipende dal tipo di funzione di attivazione. Nel caso di una funzione lineare otteniamo che il cambiamento dei pesi è dato semplicemente dalla differenza tra target e output moltiplicata per l'attività presinaptica: \[\Delta w_{ij}=\eta (t_i-y_i)x_j\]
+Per la funzione sigmoide avremo: \[\eta (t_i-y_i)y_i(1-y_i)x_j\]
+
+\subsubsection{Apprendimento con Regola Delta}
+In questo tipo di apprendimento, viene presentata alla rete una configurazione di input, l'attività fluisce alle unità di output. Viene calcolata l'attivazione delle unità di output. La configurazione così ottenuta viene confrontata con la configurazione di output desiderata, viene quindi calcolata la discrepanza tra le due configurazioni e i pesi delle connessioni vengono modificati in modo da ridurre l'errore. La procedura viene eseguita per tutti gli esempi che formano il training set ed ulteriormente ripetuta fino a quando l'errore arriva a 0 o la curva di discesa si stabilizza.
+
+\subsection{Back-Propagation}
+Una spiegazione di questa regola si può trovare \href{https://www.youtube.com/watch?v=Ilg3gGewQ5U}{qui}, video consigliato dal professore su Moodle.
+L'algoritmo di apprendimento noto come \textit{error back-propagation} è una estensione della regola delta (\textit{regola delta generalizzata}) che permette di addestrare reti multistrato.\\
+L'architettura è formata da un qualsiasi numero di strati nascosti (almeno uno) e un qualsiasi tipo di connettività.\\
+Il problema viene risolto cercando il modo per calcolare l'errore per le unità nascoste tramite la propagazione all'indietro dell'errore (per l'appunto \textit{error back-propagation}) calcolato per le unità di output attraverso le stesse connessioni che servono per la propagazione dell'attivazione. La propagazione all'indietro dell'errore rende l'algoritmo implausibile dal punto di vista biologico.
+
+\subsection{Apprendimento Batch e Apprendimento Online}
+L'apprendimento Batch è caratterizzato da una discesa del gradiente della funzione dell'errore globale. I peso vengono cambiati in base al gradiente calcolato attraverso tutti i pattern.\\
+L'apprendimento Online (o a \textit{Mini Batch}) è caratterizzato da una discesa stocastica del gradiente. I pesi vengono cambiati in base al gradiente della funzione dell'errore parziale, calcolato per un singolo esempio.
+
+\subsection{Tasso di Apprendimento}
+Il tasso di apprendimento può essere di due tipi: costante o variabile.
+
+\subsubsection{Tasso di Apprendimento Costante}
+Il tasso di apprendimento, solitamente indicato con \(\eta\) assume un valore costante. In base alla grandezza di tale numero, otteniamo due risultati distinti:
+\begin{itemize}
+    \item Costante piccola: apprendimento lento e con minimi locali
+    \item Costante grande: apprendimento veloce ma impreciso
+\end{itemize}
+
+\subsubsection{Tasso di Apprendimento Variabile}
+Il tasso di apprendimento assume un valore variabile in base all'epoca di training o analisi. La formula più utilizzata è: \[\eta = \frac{0.5}{\log{(10+k)}}\] dove \(k\) rappresenta il numero dell'epoca.
+
+\subsubsection{Momentum}
+Il momento aggiunge all'aggiornamento del peso sinaptico una frazione del precedente cambiamento di valore. Quando il gradiente dell'errore ha la stessa direzione, il momento aumenta la grandezza del passo che viene fatto verso il minimo. Quando il gradiente cambia direzione, il momento affievolisce il cambiamento.
+
+\subsection{La Generalizzazione}
+La generalizzazione è la capacità  di utilizzare in modo appropriato la conoscenza sul dominio quando si incontrano nuovi esempi del problema. Le condizioni necessarie (ma non sufficienti) per ottenere una buona generalizzazione:
+\begin{itemize}
+    \item Le variabili di input contengono sufficienti informazioni relative al target, in modo che esista una funzione matematica che lega l'output corretto agli input con un determinato grado di accuratezza
+    \item Gli esempi per l'addestramento sono in numero sufficientemente grande e sono un campione rappresentativo dell'insieme di casi a cui si vuole generalizzare (popolazione)
+\end{itemize}
+
+Le reti multistrato possono apprendere ad approssimare qualunque funzione che lega l'input all'output.\\
+
+\subsubsection{Generalizzazione VS Overfitting}
+Nella \textbf{generalizzazione} la produzione di una risposta appropriata a pattern di input non utilizzati per l'addestramento, ovvero un test set indipendente del training set.
+\\\\
+L'\textbf{overfitting} si verifica quando continua a migliorare la prestazione sui pattern di addestramento ma peggiora le prestazioni in termini di generalizzazione.\\
+Questo avviene perché la relazione tra gli elementi non è regolare (ossia ha tante eccezioni) e i dati contengono rumore, quindi la rete apprende anche il rumore nei dati usati per l'addestramento.
+
+\subsection{Evitare l'Overfitting}
+Per evitare l'oberfitting (migliorando quindi la generalizzazione), bisogna utilizzare reti neurali non troppo potenti perché questo permette di apprendere le regolarità statiche nei dati piuttosto che memorizzare i pattern di training. Questo si può ottenere limitando il numero di unità nascoste,
+utilizzando \textbf{\textit{Early Stopping}} ossia quando utilizziamo un set di pattern solo per la verifica di overfitting durante l'apprendimento e fermarlo prima che l'errore sul validation set inizi ad aumentare e utilizzando il \textbf{decadimento dei pesi} (o \textit{weight decay}), ossia facendo in modo che i pesi abbiano la tendenza spontanea a diminuire portando i pesi deboli a tendere verso lo 0 (avendo meno pesi da considerare avremo anche meno parametri, evitando quindi di apprendere anche il rumore nei dati).
+
+\subsection{Training VS Testing}
+\paragraph{Training Set}
+Esso è un insieme di esempi (\textit{pattern}) per l'addestramento. Sono utilizzati dall'algoritmo di apprendimento per trovare i valori dei pesi delle connessioni.
+
+\paragraph{Validation Set}
+Rappresenta un insieme di esempi utilizzati per ottimizzare parametri di apprendimento (\textit{iper-parametri}), il numero di unità nascoste e per decidere quando fermare l'apprendimento
+
+\paragraph{Test Set}
+Insieme di esempi utilizzati per valutare la performace finale del modello\\
+\\
+\textit{Perché utilizzare set diversi per validation e test?} Il set di validazione viene utilizzato per selezionare il modello migliore, quindi l'accuratezza sul validation set ha un bias sovrastimato.\\
+\textit{Come vanno ripartiti gli esempi?} Bisognerebbe sempre utilizzare quanti più dati possibili per l'addestramento. Se ci sono molti esempio, la suddivisione potrebbe essere, in percentuale, 50-25-25.
+
+\paragraph{Cross-Validazione}
+Se i dati non sono sufficienti per ripartirli in due insiemi separati di training e test, è essenziale massimizzare il numero di esempi di training utilizzando la tecnica della \textit{cross-validazione}.\\
+Con \textbf{k-fold cross-validation} si intende che il dataset viene diviso in \(k\) parti di uguale numerosità. Ad ogni ciclo di cross-validazione, la \(k\)-esima parte del dataset viene esclusa dal training per essere utilizzati come test. La performance finale è data dalla media trai i risultati di ogni ciclo.
+
+\subsection{Valutazione delle performance}
+La valutazione della performance di una rete neurale va fatta sul test set. Esistono molte metriche di performance, anche specifiche per dominio, la distinzione principale tra le metriche di performance è relativa a compiti o di regressione o di classificazione.\\
+\paragraph{Regressione} Un compito di regressione implica uno o più output continui. La prestazione si valuta quindi in termini di distanza tra l'output effettivo e quello desiderato, ad esempio utilizzando l'errore quadratico medio o la proporzione di varianza spiegata. Con una singola variabile di output è utile un grafico a dispersione che mostra le predizioni e i valori target.
+\paragraph{Classificazione} Un compito di classificazione implica output binari. una valutazione in termini di accuratezza non è sufficiente per stabilire la qualità di un classificatore, ma va considerata la matrice di confusione.
+
+\subsubsection{Matrici di Confusione}
+La matrice di confusione restituisce 4 risultati:
+\begin{itemize}
+    \item TN: True Negative
+    \item TP: True Positive
+    \item FN: False Negative
+    \item FP: False Positive
+\end{itemize}
+Gli indici di performance sono:
+\begin{itemize}
+    \item Accuratezza: \(\frac{TN+TP}{TN+TP+FN+FP}\)
+    \item Precisione: \(\frac{TP}{TP+FP}\)
+    \item Rateo dei True Positive: \(\frac{TP}{TP+FN}\)
+    \item Rateo dei False Positive: \(\frac{FP}{TN+FP}\)
+\end{itemize}
+
+\subsection{Curva ROC e AUC}
+\paragraph{Curca ROC} La curva ROC (\textit{Receiver Operating Characteristic}) per un classificatore viene creata registrando il valore del rateo dei True Positive rispetto a quello dei False Positive al variare di un parametro.Ogni punto sulla curva è ottenuto per un dato valore di parametro del classificatore, spesso la soglia utilizzata per discriminare tra due classi.
+\paragraph{Curva AUC} La curva AUC (\textit{Area Under the Curve}) varia tra nell'intervallo \([0,1]\) e rappresenta la performance del classificatore. AUC è invariante alla soglia, ossia misura la qualità delle predizioni del modello indipendentemente dalla soglia di classificazione.
+
+\newpage
+\section{Deep Learning Supervisionato}
+Nel deep learning supervisionato, la rete neurale ha un numero di strati nascosti maggiore di 1, formando quindi una rete profonda (\textit{deep neural network}).\\
+Per il successo del deep learning sono di fondamentale importanza i \textbf{\textit{Big Data}} (accesso a grandi quantità di dati etichettati) e \textbf{\textit{GPU computing}} (enorme potenza di calcolo parallelo su schede di processori grafici).
+\subsection{Il Problema del Vanishing Gradient}
+Se aggiungiamo molti strati nascosti, il segnale di errore deve passare per molti livelli di retro-propagazione prima di giungere alle connessioni più vicine all'input. Questo fenomeno è particolarmente problematico con la funzione di attivazione sigmoidea, la quale tende a saturare quando la somma pesata degli input è troppo grande o troppo piccola, infatti la derivata tende a zero nella zona di saturazione e di conseguenza il gradiente svanisce nel giro di pochi passi di retro-propagazione.
+\subsubsection{Gli Sviluppi che hanno Consentito la Rivoluzione del Deep Learing}
+Miglioramento degli algoritmi:
+\begin{itemize}
+    \item Inizializzazione smart (e non randomica) dei pesi iniziali
+    \item Learning rate adattivo in base al gradiente
+    \item Utilizzo di reti di grandi dimensioni combinate con regolarizzatori efficaci (sparsità + decadimento dei pesi + \textit{dropout})
+    \item Ottimizzatori del 2° ordine
+    \item Funzione di attivazione che non satura il gradiente (\textit{Rectified Linear Unit - RELU}).
+\end{itemize}
+
+Oltre a questo:
+\begin{itemize}
+    \item Disponibilità di enormi training set digitali
+    \item Aumento delle prestazioni di calcolo
+    \item Architetture convoluzionali
+\end{itemize}
+
+\subsection{Reti Neurali Convoluzionali}
+La \textit{Convolutional Neural Network - CNN} è una rete profonda che include almeno uno strato convoluzionale in cui i neuroni nascosti non sono interamente connessi con lo strato precedente ma hanno campi recettivi locali. Solitamente questo strato è seguito da uno strato di \textit{pooling} che serve per ridurre la dimensionalità ed enfatizzare le caratteristiche più salienti.\\
+Nella parte più profonda della rete è inserito almeno uno strato nascosto standard interamente connesso con quello precedente. L'ultimo strato nascosto interamente connesso attiva lo strato di output.
+\subsubsection{Lo Strato Convoluzionale}
+Ogni neurone nascosto dello strato convoluzionale ha un campo recettivo locale che codifica una specifica \textit{feature} chiamata anche \textit{kernel} o filtro.\\
+Il numero di neuroni definisce quante \textit{features} verranno rappresentate in ciascun livello.\\
+A differenza delle reti multi-strato standard, ciascun filtro è applicato all'intera immagine attraverso un'operazione di convoluzione, ed è come avere più copie dello stesso neurone, in quanto utilizziamo lo stesso insieme di pesi per processare diverse porzioni dell'immagine in input.
+\subsubsection{Iperparametri di CNN}
+Gli iperparametri di una \textit{CNN} sono:
+\begin{itemize}
+    \item Numero di neuroni nascosti: specifica quanti filtri usare in ciascun layer
+    \item Dimensioni del kernel: definisce il campo recettivo del filtro
+    \item Stride: dimensione del passo di spostamento del filtro (\textit{overlap})
+    \item Padding: per mantenere invariata la dimensione dell'immagine, si imposta un bordo aggiuntivo con valori costanti (e solitamente inizializzati a 0)
+\end{itemize}
+
+\subsubsection{Lo Strato di Pooling}
+Lo strato di pooling viene inserito dopo uno strato convoluzionale per ridurre la dimensione dell'immagine. Questo riduce il numero di parametri, controllando l'overfitting e promuovendo l'invarianza.
+\end{document}
