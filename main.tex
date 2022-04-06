@@ -1,8 +1,36 @@
 \documentclass[12pt, a4paper]{article}
 \usepackage[utf8]{inputenc}
-\usepackage{hyperref}
-\usepackage{graphicx}
-\usepackage{amsmath}
+\usepackage{hyperref}   % PER I LINK INTERNI ED ESTRENI
+\usepackage{graphicx}   % PER LE IMMAGINI
+\usepackage{amsmath}    % PER LE FRAZIONI
+\usepackage{listings}   % PER IL CODICE
+\usepackage{xcolor}     % PER COLORARE IL CODICE
+
+\definecolor{codegreen}{rgb}{0,0.6,0}
+\definecolor{codegray}{rgb}{0.5,0.5,0.5}
+\definecolor{codepurple}{rgb}{0.58,0,0.82}
+\definecolor{backcolour}{rgb}{0.95,0.95,0.92}
+
+\lstdefinestyle{mystyle}{
+    backgroundcolor=\color{backcolour},   
+    commentstyle=\color{codegreen},
+    keywordstyle=\color{magenta},
+    numberstyle=\tiny\color{codegray},
+    stringstyle=\color{codepurple},
+    basicstyle=\ttfamily\footnotesize,
+    breakatwhitespace=false,         
+    breaklines=true,                 
+    captionpos=b,                    
+    keepspaces=true,                 
+    numbers=left,                    
+    numbersep=5pt,                  
+    showspaces=false,                
+    showstringspaces=false,
+    showtabs=false,                  
+    tabsize=2
+}
+
+\lstset{style=mystyle}
 
 \hypersetup{
     colorlinks=true,
@@ -382,5 +410,133 @@ Gli iperparametri di una \textit{CNN} sono:
 Lo strato di pooling viene inserito dopo uno strato convoluzionale per ridurre la dimensione dell'immagine. Questo riduce il numero di parametri, controllando l'overfitting e promuovendo l'invarianza.
 
 %%% DOCUMENTO AGGIORNATO AL 06/04/2022 -> DEEP LEARNING SUPERVISIONATO
+
+\section{Laboratori}
+\subsection{Laboratorio 1 - Il Percettrone e un Problema Lineare}
+Nel primo laboratorio è stato costruito un semplice modello lineare di apprendimento tramite il percettrone.\\
+Sarà di seguito riportato il codice sorgente per la modifica automatica dei pesi e le funzioni principali dello stesso.\\
+\\
+Prima di tutto, saranno da importare le librerie che verranno utilizzate per i grafici:
+\begin{lstlisting}[language=Python, caption=Importazione delle librerie]
+    import numpy as np
+    import matplotlib.pyplot as plt
+\end{lstlisting}
+
+\subsubsection{Problema di AND}
+Per prima cosa addestreremo il percettrone a risolvere un problema di \textit{AND}:
+\begin{lstlisting}[language=Python, caption=Inizializzazione]
+input_and = np.array([[0, 0],
+                      [0, 1],
+                      [1, 0],
+                      [1, 1]])
+target_and = np.array([[0],
+                       [0],
+                       [0],
+                       [1]])
+
+plt.scatter(input_and[:3, 0], input_and[:3, 1]) # Inserisce i primi tre elementi degli array
+plt.scatter(input_and[3, 0], input_and[3, 1], color='red') #Inserisce il quarto valore degli array
+plt.legend(['0', '1'])
+__ = plt.suptitle("La funzione logica AND")
+\end{lstlisting}
+\begin{lstlisting}[language=Python, caption=Funzioni di Addestramento]
+def step(x):
+  if x >=0:
+    return 1
+  else:
+    return -1
+
+def target_percettrone(y):
+  new_y = y.copy()
+  new_y[new_y == 0] = -1
+  return new_y
+
+def addestra_percettrone_step(inputs, targets):
+  valori_errore_medio = []  # teniamo traccia degli errori del modello
+  W = np.zeros(2)  # inizializziamo i parametri del Percettrone (pesi W e bias b) a zero
+  b = np.zeros(1)
+
+  learning_rate = 0.5  # specifichiamo il learning rate
+  for epoca in range(100):  # ripetiamo lo step di apprendimento su tutti gli esempi per un massimo di 100 volte
+    errore_medio = 0
+    print("Valore attuale dei parametri W:", W, "e b:", b)
+    for input, target in zip(inputs, targets):  # scorriamo tutti gli esempi
+      pre_attivazione = np.dot(W, input) + b[0]  # calcoliamo il valore di pre-attivazione (somma pesata a cui sottraggo il bias)
+      output = step(pre_attivazione)  # applichiamo la funzione di attivazione "a scalino" per calcolare l'output
+
+      ### apprendimento ###
+      errore = target[0] - output
+      
+      W_delta = learning_rate * errore * input
+      b_delta = learning_rate * errore
+      print("input:", input, "output:", output, " \ttarget:", target[0], " \terrore:", errore, " \tW_delta:", W_delta, " \tb_delta:", b_delta)
+      W += W_delta  # aggiorniamo il valore dei parametri (pesi sinaptici e bias) del Percettrone
+      b += b_delta
+      errore_medio += abs(errore) # calcoliamo l'errore medio sommando i valori assoluti dell'errore
+      
+    errore_medio /= len(inputs)
+    valori_errore_medio.append(errore_medio)
+    
+    print(f"Errore medio all'iterazione {epoca+1}:", errore_medio)
+    print()
+    if errore_medio == 0: # se l'errore raggiunge lo zero, fermiamo l'apprendimento
+      break
+\end{lstlisting}
+
+\begin{lstlisting}[language=Python, caption=Funzione di Attivazione Sigmoidea e Output dei Risultati]
+def sigmoid(x):
+    return 1 / (1 + np.exp(-x))
+
+def addestra_percettrone_sigm(inputs, targets):
+    valori_errore_quadratico_medio = []  # teniamo traccia degli errori del modello
+    W = 2 * np.random.rand(2) - 1  # inizializziamo i parametri del Percettrone da una distribuzione uniforme in [-1, 1]
+    b = 2 * np.random.rand(1) - 1
+  
+    learning_rate = 0.5  # specifichiamo il learning rate
+    for epoca in range(500):  # ripetiamo lo step di apprendimento su tutti gli esempi per 500 volte
+      errore_quadratico_medio = 0
+      for input, target in zip(inputs, targets):  # scorriamo tutti gli esempi
+        pre_attivazione = np.dot(W, input) + b[0]  # calcoliamo il valore di pre-attivazione
+        output = sigmoid(pre_attivazione)  # applichiamo la funzione di attivazione per calcolare l'output
+  
+        ### apprendimento ###
+        errore = (output - target[0])
+        gradiente_W = errore * output * (1 - output)
+        W_delta = learning_rate * gradiente_W * input
+        b_delta = learning_rate * errore
+        W -= W_delta  # aggiorniamo il valore dei parametri del Percettrone
+        b -= b_delta
+        errore_quadratico_medio += errore**2
+        
+      errore_quadratico_medio /= len(inputs)
+      valori_errore_quadratico_medio.append(errore_quadratico_medio)
+    
+    return valori_errore_quadratico_medio
+
+addestra_percettrone_step(input_and, target_percettrone(target_and))
+
+errori_and = addestra_percettrone_sigm(input_and, target_and)
+
+__ = plt.plot(range(len(errori_and)), errori_and)
+\end{lstlisting}
+
+\subsubsection{Problema di OR}
+\begin{lstlisting}[language=Python, caption=Inizializzazione]
+input_or = np.array([[0, 0],
+                        [0, 1],
+                        [1, 0],
+                        [1, 1]])
+target_or = np.array([[0],
+                        [1],
+                        [1],
+                        [1]])
+
+plt.scatter(input_or[0, 0], input_or[0, 1])
+plt.scatter(input_or[1:, 0], input_or[1:, 1], color='red')
+plt.legend(['0', '1'])
+__ = plt.suptitle("La funzione logica OR")
+\end{lstlisting}
+
+%%% DA TERMINARE LA PARTE DEL PROBLEMA DI OR e XOR
 
 \end{document}
