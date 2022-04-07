@@ -425,20 +425,18 @@ Prima di tutto, saranno da importare le librerie che verranno utilizzate per i g
 \subsubsection{Problema di AND}
 Per prima cosa addestreremo il percettrone a risolvere un problema di \textit{AND}:
 \begin{lstlisting}[language=Python, caption=Inizializzazione]
-input_and = np.array([[0, 0],
-                      [0, 1],
-                      [1, 0],
-                      [1, 1]])
-target_and = np.array([[0],
-                       [0],
-                       [0],
-                       [1]])
+input_and = np.array([[0, 0], [0, 1], [1, 0], [1, 1]])
+target_and = np.array([[0], [0], [0], [1]])
 
-plt.scatter(input_and[:3, 0], input_and[:3, 1]) # Inserisce i primi tre elementi degli array
-plt.scatter(input_and[3, 0], input_and[3, 1], color='red') #Inserisce il quarto valore degli array
+# Inserisce i primi tre elementi degli array
+plt.scatter(input_and[:3, 0], input_and[:3, 1]) 
+
+#Inserisce il quarto valore degli array
+plt.scatter(input_and[3, 0], input_and[3, 1], color='red')
 plt.legend(['0', '1'])
 __ = plt.suptitle("La funzione logica AND")
 \end{lstlisting}
+
 \begin{lstlisting}[language=Python, caption=Funzioni di Addestramento]
 def step(x):
   if x >=0:
@@ -452,17 +450,27 @@ def target_percettrone(y):
   return new_y
 
 def addestra_percettrone_step(inputs, targets):
-  valori_errore_medio = []  # teniamo traccia degli errori del modello
-  W = np.zeros(2)  # inizializziamo i parametri del Percettrone (pesi W e bias b) a zero
+  # teniamo traccia degli errori del modello
+  valori_errore_medio = []  
+
+  # inizializziamo i parametri del Percettrone (pesi W e bias b) a zero
+  W = np.zeros(2)  
   b = np.zeros(1)
 
-  learning_rate = 0.5  # specifichiamo il learning rate
-  for epoca in range(100):  # ripetiamo lo step di apprendimento su tutti gli esempi per un massimo di 100 volte
+  # specifichiamo il learning rate
+  learning_rate = 0.5
+  
+  # ripetiamo lo step di apprendimento su tutti gli esempi per un massimo di 100 volte
+  for epoca in range(100):  
     errore_medio = 0
     print("Valore attuale dei parametri W:", W, "e b:", b)
-    for input, target in zip(inputs, targets):  # scorriamo tutti gli esempi
-      pre_attivazione = np.dot(W, input) + b[0]  # calcoliamo il valore di pre-attivazione (somma pesata a cui sottraggo il bias)
-      output = step(pre_attivazione)  # applichiamo la funzione di attivazione "a scalino" per calcolare l'output
+
+    # scorriamo tutti gli esempi
+    for input, target in zip(inputs, targets): 
+      # calcoliamo il valore di pre-attivazione (somma pesata a cui sottraggo il bias) 
+      pre_attivazione = np.dot(W, input) + b[0]  
+      # applichiamo la funzione di attivazione "a scalino" per calcolare l'output
+      output = step(pre_attivazione)  
 
       ### apprendimento ###
       errore = target[0] - output
@@ -470,16 +478,21 @@ def addestra_percettrone_step(inputs, targets):
       W_delta = learning_rate * errore * input
       b_delta = learning_rate * errore
       print("input:", input, "output:", output, " \ttarget:", target[0], " \terrore:", errore, " \tW_delta:", W_delta, " \tb_delta:", b_delta)
-      W += W_delta  # aggiorniamo il valore dei parametri (pesi sinaptici e bias) del Percettrone
+
+      # aggiorniamo il valore dei parametri (pesi sinaptici e bias) del Percettrone
+      W += W_delta  
       b += b_delta
-      errore_medio += abs(errore) # calcoliamo l'errore medio sommando i valori assoluti dell'errore
+      
+      # calcoliamo l'errore medio sommando i valori assoluti dell'errore
+      errore_medio += abs(errore) 
       
     errore_medio /= len(inputs)
     valori_errore_medio.append(errore_medio)
     
     print(f"Errore medio all'iterazione {epoca+1}:", errore_medio)
-    print()
-    if errore_medio == 0: # se l'errore raggiunge lo zero, fermiamo l'apprendimento
+
+    # se l'errore raggiunge lo zero, fermiamo l'apprendimento
+    if errore_medio == 0: 
       break
 \end{lstlisting}
 
@@ -488,23 +501,25 @@ def sigmoid(x):
     return 1 / (1 + np.exp(-x))
 
 def addestra_percettrone_sigm(inputs, targets):
-    valori_errore_quadratico_medio = []  # teniamo traccia degli errori del modello
-    W = 2 * np.random.rand(2) - 1  # inizializziamo i parametri del Percettrone da una distribuzione uniforme in [-1, 1]
+    # teniamo traccia degli errori del modello  
+    valori_errore_quadratico_medio = []  
+    W = 2 * np.random.rand(2) - 1 
     b = 2 * np.random.rand(1) - 1
   
-    learning_rate = 0.5  # specifichiamo il learning rate
-    for epoca in range(500):  # ripetiamo lo step di apprendimento su tutti gli esempi per 500 volte
+    learning_rate = 0.5
+    for epoca in range(500):
       errore_quadratico_medio = 0
-      for input, target in zip(inputs, targets):  # scorriamo tutti gli esempi
-        pre_attivazione = np.dot(W, input) + b[0]  # calcoliamo il valore di pre-attivazione
-        output = sigmoid(pre_attivazione)  # applichiamo la funzione di attivazione per calcolare l'output
+      for input, target in zip(inputs, targets):
+        pre_attivazione = np.dot(W, input) + b[0]
+        # applichiamo la funzione di attivazione per calcolare l'output
+        output = sigmoid(pre_attivazione)  
   
         ### apprendimento ###
         errore = (output - target[0])
         gradiente_W = errore * output * (1 - output)
         W_delta = learning_rate * gradiente_W * input
         b_delta = learning_rate * errore
-        W -= W_delta  # aggiorniamo il valore dei parametri del Percettrone
+        W -= W_delta 
         b -= b_delta
         errore_quadratico_medio += errore**2
         
@@ -522,14 +537,8 @@ __ = plt.plot(range(len(errori_and)), errori_and)
 
 \subsubsection{Problema di OR}
 \begin{lstlisting}[language=Python, caption=Inizializzazione]
-input_or = np.array([[0, 0],
-                        [0, 1],
-                        [1, 0],
-                        [1, 1]])
-target_or = np.array([[0],
-                        [1],
-                        [1],
-                        [1]])
+input_or = np.array([[0, 0], [0, 1], [1, 0], [1, 1]])
+target_or = np.array([[0], [1], [1], [1]])
 
 plt.scatter(input_or[0, 0], input_or[0, 1])
 plt.scatter(input_or[1:, 0], input_or[1:, 1], color='red')
@@ -537,6 +546,98 @@ plt.legend(['0', '1'])
 __ = plt.suptitle("La funzione logica OR")
 \end{lstlisting}
 
-%%% DA TERMINARE LA PARTE DEL PROBLEMA DI OR e XOR
+A questo punto possiamo utilizzare le funzioni precedentemente inizializzate per addestrare il percettrone.
+
+\subsubsection{Problema di XOR}
+Utilizzando il seguente set di input e output desiderati, ci accorgeremo che la rete ciclerà all'infinito in quanto non troverà un risoluzione lineare per il problema di XOR.
+\begin{lstlisting}[language=Python, caption=Inizializzazione]
+input_xor = np.array([[0, 0], [0, 1], [1, 0], [1, 1]])
+target_xor = np.array([[0], [1], [1], [0]])    
+\end{lstlisting}
+
+\subsection{Un Primo Caso Reale - Database Hearth Disease}
+Adesso proveremo ad applicare il percettrone ad un problema realistico, appoggiandoci al dataset \href{https://archive.ics.uci.edu/ml/datasets/Heart+Disease}{Heart Disease}. Il campione contiene informazioni mediche su diversi soggetti, alcuni dei quali hanno patologia cardiache. Lo scopo del problema di classificazione è di distinguere i soggetti che hanno una patologia da quelli sani. Si tratta quindi di un problema di classificazione binaria.
+
+Prima di tutto dobbiamo acquisire il dataset:
+
+\begin{lstlisting}[language=Python, caption=Acquisizione del Dataset]
+! wget https://archive.ics.uci.edu/ml/machine-learning-databases/heart-disease/processed.cleveland.data
+\end{lstlisting}
+
+Fatto questo, importeremo la libreria che ci permette di creare rappresentazioni su di un piano cartesiano e poi etichetteremo i vari dati per renderli accessibili al percettrone.
+
+\begin{lstlisting}[language=Python, caption=Importazione Libreria Grafica e Labelling]
+import pandas as pd
+
+heart_disease = pd.read_csv("processed.cleveland.data",
+names=["age", "sex", "cp", "trestbps", "chol", "fbs", "restecg", "thalach", "exang", "oldpeak", "slope", "ca", "thal", "num"], na_values='?')
+heart_disease = heart_disease.dropna()
+heart_disease.num = heart_disease.num.apply(lambda x: 0 if x == 0 else 1)
+heart_disease.head(10)
+
+heart_disease_test = heart_disease.iloc[:10, :]
+heart_disease_train = heart_disease.iloc[10:, :]
+
+heart_disease_samples = heart_disease_train.loc[:, "age":"thal"].to_numpy()
+heart_disease_targets = heart_disease_train.num.to_numpy(dtype=np.float64)
+
+heart_disease_samples = ((heart_disease_samples - heart_disease_samples.mean(axis=0)) / heart_disease_samples.std(axis=0))
+\end{lstlisting}
+
+Fatto questo, bisogna modificare la funzione di addestramento del percettrone per cambiare il numero di parametri del modello e cambiare il valore di alcuni iperparametri, ossia learning rate e numero di epoche.\\
+Faremo inoltre restituire dalla funzione anche i parametri addestrati del percettrone per testarlo su un insieme di esempi che abbiamo tenuto da parte.
+
+\begin{lstlisting}[language=Python, caption=Funzione di Addestramento]
+def addestra_percettrone_sigm(inputs, targets):
+  valori_errore_quadratico_medio = [] 
+  W = 2 * np.random.rand(13) - 1
+  b = 2 * np.random.rand(1) - 1
+
+  learning_rate = 0.005
+  for epoca in range(500):
+    errore_quadratico_medio = 0
+    for input, target in zip(inputs, targets): 
+      pre_attivazione = np.dot(W, input) + b[0]
+      output = sigmoid(pre_attivazione) 
+
+      ### apprendimento ###
+      errore = (output - target)
+      gradiente_W = errore * output * (1 - output)
+      W_delta = learning_rate * gradiente_W * input
+      b_delta = learning_rate * errore
+      W -= W_delta
+      b -= b_delta
+      errore_quadratico_medio += errore**2
+      
+    errore_quadratico_medio /= len(inputs)
+    valori_errore_quadratico_medio.append(errore_quadratico_medio)
+  
+  return valori_errore_quadratico_medio, W, b   
+\end{lstlisting}
+
+Fatto questo, possiamo avviare l'addestramento del percettrone e mostrare la curva di errore.
+
+\begin{lstlisting}[language=Python, caption=Addestramento del Percettrone]
+errori_heart, W, b = addestra_percettrone_sigm(heart_disease_samples, heart_disease_targets)
+
+__ = plt.plot(range(len(errori_heart)), errori_heart)
+\end{lstlisting}
+
+Alla fine, potremmo quindi avviare il test sui dati che avevamo precedentemente tenuto da parte.
+
+\begin{lstlisting}[language=Python, caption=Labelling dei Dati e Predizione]
+heart_disease_samples_test = heart_disease_test.loc[:, "age":"thal"].to_numpy()
+heart_disease_targets_test = heart_disease_test.num.to_numpy(dtype=np.float64)
+
+heart_disease_samples_test = ((heart_disease_samples_test - heart_disease_samples_test.mean(axis=0)) / heart_disease_samples_test.std(axis=0))
+
+preds = []
+for sample in heart_disease_samples_test:
+pred = sigmoid(W @ sample + b)
+preds.append(pred)
+
+for p, t in zip(preds, heart_disease_targets_test):
+  print(p, p[0] > 0.5, t)
+\end{lstlisting}
 
 \end{document}
