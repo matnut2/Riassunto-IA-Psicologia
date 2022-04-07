@@ -409,8 +409,6 @@ Gli iperparametri di una \textit{CNN} sono:
 \subsubsection{Lo Strato di Pooling}
 Lo strato di pooling viene inserito dopo uno strato convoluzionale per ridurre la dimensione dell'immagine. Questo riduce il numero di parametri, controllando l'overfitting e promuovendo l'invarianza.
 
-%%% DOCUMENTO AGGIORNATO AL 06/04/2022 -> DEEP LEARNING SUPERVISIONATO
-
 \section{Laboratori}
 \subsection{Laboratorio 1 - Il Percettrone e un Problema Lineare}
 Nel primo laboratorio è stato costruito un semplice modello lineare di apprendimento tramite il percettrone.\\
@@ -638,6 +636,103 @@ preds.append(pred)
 
 for p, t in zip(preds, heart_disease_targets_test):
   print(p, p[0] > 0.5, t)
+\end{lstlisting}
+
+\subsection{Laboratorio 2 - Problemi Non Lineari}
+\subsubsection{Problema di XOR}
+Nel precedente laboratorio, si era constatato che non fosse possibile riprodurre la funzione di XOR con una funzione lineare.\\
+Adesso, utilizzando la libreria \textit{Scikit-Learn}, potremmo utilizzare strati nascosti che utilizzano funzioni di attivazione non lineari.
+
+\begin{lstlisting}[language=Python, caption=Importazione delle Librerie Necessarie]
+import numpy as np 
+import matplotlib.pyplot as plt
+from sklearn.neural_network import MLPClassifier   
+\end{lstlisting}
+
+Fatto questo ,ora bisogna definire l'array di input e di output desiderato per lo XOR.
+In questa libreria, sia la struttura del modello che l'algoritmo di apprendimento uisato per modificarne i pesi sono definiti all'interno della classe MLPClassifier. Quando creiamo una nuova istanza della classe dobbiamo quindi specificare i parametri che descrivono la struttura del modello, l'algoritmo di apprendimento usato e quelli cheregolano l'algoritmo di apprendimento.\\
+Il parametro \textit{random\textunderscore seed} serve per aumentare la riproducibilità di valori dipendenti di variabili casuali.
+
+\begin{lstlisting}[language=Python, caption=Inizializzazione]
+input_xor = np.array([[0, 0], [0, 1], [1, 0], [1, 1]])
+target_xor = np.array([[0], [1], [1], [0]])    
+
+random_state = 4224
+MLP = MLPClassifier(hidden_layer_sizes=(2), solver='sgd', learning_rate_init=0.05, max_iter=10000, random_state=random_state)
+MLP = MLP.fit(input_xor, target_xor.ravel())
+_ = plt.plot(range(MLP.n_iter_), MLP.loss_curve_)
+MLP.score(input_xor, target_xor)
+\end{lstlisting}
+
+\subsubsection{Il Dataset Hearth Disease}
+Adesso utilizzeremo il dataset del laboratorio precedente per testare la classificazione tramite MLP e valutando il funzionamento con la curva ROC e la matrice di confusione.
+Per ovvi motivi, di seguito saranno riportati solo i passaggi che risultano diversi a quelli del precedente laboratiorio.
+
+\begin{lstlisting}[language=Python, caption=Importazione delle Librerie e Apprendimento con Funzione di Costo]
+    from sklearn.model_selection import train_test_split
+    import sklearn.metrics as metrics
+    
+    (X_train_heart, X_test_heart, y_train_heart, y_test_heart) = train_test_split(heart_disease_samples, heart_disease_targets)
+
+    random_state = 0
+    MLP = MLPClassifier(hidden_layer_sizes=(10), solver='sgd', learning_rate_init=0.0005, max_iter=1000, random_state=random_state)
+
+    MLP = MLP.fit(X_train_heart, y_train_heart)
+
+    _ = plt.plot(range(MLP.n_iter_), MLP.loss_curve_)
+
+    MLP.score(X_test_heart, y_test_heart)
+\end{lstlisting}
+
+Come descritto nella parte di teoria di questo riassunto, la curva ROC è un metodo grafico usato per valutare i classificatori binari. L'idea è quella di vedere come varia la percentuale di positivi reali e falsi positivi al variare della sogli a di discriminazione.
+
+\begin{lstlisting}[language=Python, caption=Curva ROC e AUC]
+    _ = metrics.RocCurveDisplay.from_predictions(y_test_heart, MLP.predict_proba(X_test_heart)[:, 1])
+\end{lstlisting}
+
+La matrice di confusione è un altro strumento di visualizzazione degli errori di un classificatore, applicabile anche a classificatori multi-classe. Questo metodo permette di capire in modo dettagliato la distribuzione degli errori di classificazione tra le varie classi.
+
+\begin{lstlisting}[language=Python, caption=Rappresentazione Grafica della Matrice di Confusione]
+    _ = metrics.ConfusionMatrixDisplay.from_predictions(y_test_heart, MLP.predict(X_test_heart))
+\end{lstlisting}
+
+\subsubsection{Il Dataset Breast Cancer}
+In questa seconda esercitazione utilizzeremo il dataset \href{https://archive.ics.uci.edu/ml/datasets/breast+cancer+wisconsin+(diagnostic)}{Breast Cancer}.\\
+Per questo problema dovrebbe bastare un MPL con uno strato nascosto di sole 10 unità.
+
+\begin{lstlisting}[language=Python, caption=Programma Completo]
+    ! wget https://archive.ics.uci.edu/ml/machine-learning-databases/breast-cancer-wisconsin/wdbc.data
+    
+    names = []
+    names += ["ID", "label"]
+    cell_features = ["radius", "texture", "perimeter", "area", "smoothness", "compactness", "concavity", "concave_points", "symmetry", "fractal_dimension",]
+    
+    for i in range(1, 4):
+        names += [feature_name + f"_c{i}" for feature_name in cell_features]
+
+    breast_cancer = pd.read_csv("wdbc.data", names=names, na_values='?')
+    breast_cancer = breast_cancer.dropna()
+    breast_cancer = breast_cancer.drop(columns=["ID"])
+    breast_cancer.label = breast_cancer.label.apply(lambda x: 0 if x == "B" else 1)
+    breast_cancer.head()
+
+    breast_cancer_samples = breast_cancer.loc[:, "radius_c1":"fractal_dimension_c3"].to_numpy()
+    breast_cancer_targets = breast_cancer.label.to_numpy()
+
+    (X_train_cancer, X_test_cancer, y_train_cancer, y_test_cancer) = train_test_split(breast_cancer_samples, breast_cancer_targets)
+
+    random_state = 0
+    MLP = MLPClassifier(hidden_layer_sizes=(10), solver='sgd', learning_rate_init=0.0001, max_iter=1000, random_state=random_state)
+
+    MLP = MLP.fit(X_train_cancer, y_train_cancer)
+
+    _ = plt.plot(range(MLP.n_iter_), MLP.loss_curve_)
+
+    MLP.score(X_test_cancer, y_test_cancer)
+
+    _ = metrics.RocCurveDisplay.from_predictions(y_test_cancer, MLP.predict_proba(X_test_cancer)[:, 1])
+
+    _ = metrics.ConfusionMatrixDisplay.from_predictions(y_test_cancer, MLP.predict(X_test_cancer))
 \end{lstlisting}
 
 \end{document}
