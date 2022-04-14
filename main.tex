@@ -54,7 +54,7 @@
 
 \newpage
 \begin{abstract}
-    Questo riassunto rappresenta una parte del materiale di studio fornito dal Prof. Zorzi e dal Prof. Testolin nell'Anno Accademico 2021-2022 e non ha lo scopo di sostituire le spiegazioni dei docenti, ma di fornire un breve riassunto finalizzato al ripasso.\\ In questo documento verranno inoltre riportati alcuni dei link consigliati dal Professore e che hanno lo scopo di approfondire alcuni argomenti del corso; oltre ai link appena citati, ne ho aggiunti altri che ritengo possano essere utili per una migliore comprensione di alcuni argomenti che sono inerenti esclusivamente alla psicologia e non all'informatica.
+    Questo documento rappresenta una parte del materiale di studio fornito dal Prof. Zorzi e dal Prof. Testolin nell'Anno Accademico 2021-2022 e non ha lo scopo di sostituire le spiegazioni dei docenti, ma di fornire un breve riassunto finalizzato al ripasso.\\ In questo documento verranno inoltre riportati alcuni dei link consigliati dal Professore e che hanno lo scopo di approfondire alcuni argomenti del corso; oltre ai link appena citati, ne ho aggiunti altri che ritengo possano essere utili per una migliore comprensione di alcuni argomenti che sono inerenti esclusivamente alla psicologia e non all'informatica.
     Nel caso fossero presenti dei refusi o errori vari, potete scrivermi all'indirizzo mail \href{mailto:matteo.solda.1@studenti.unipd.it}{matteo.solda.1@studenti.unipd.it} o su Telegram a @Matt2000eo.\\
     Buono studio!
 \end{abstract}
@@ -408,6 +408,60 @@ Gli iperparametri di una \textit{CNN} sono:
 
 \subsubsection{Lo Strato di Pooling}
 Lo strato di pooling viene inserito dopo uno strato convoluzionale per ridurre la dimensione dell'immagine. Questo riduce il numero di parametri, controllando l'overfitting e promuovendo l'invarianza.
+
+\subsection{La Dimensione Temporale}
+L'informazione in input può arrivare al sistema neurale in modo sequenziale, e può quindi possedere una struttura temporale, per questo anche l'output deve possedere una natura sequenziale.
+Solitamente questo si applica per problemi di:
+\begin{itemize}
+    \item Riconoscimento del parlato
+    \item Riconoscimento di azioni
+    \item Predizione della dinamica in oggetti in moviemento
+    \item Generazione di testo o musica
+    \item Predizione di serie storiche
+\end{itemize}
+
+In una classica rete multistrato, l'output \(O(t)\) al tempo \(t\) dipende solo dall'input corrente \(I(t)\), quindi non può apprendere dipendenze temporali.\\
+Una possibile soluzione consiste nel trasformare il tempo in spazio, ossia presentiamo come input alcuni elementi della sequenza \(S\) in una \textit{finestra temporale} \(W^T(t)\) che si sposta sopra \(S\), ossia:
+\[W^T(t)=[S_t, S_{t+1}, ... , S_{t+T}]\]
+Qui però sorgono due problemi:
+\begin{enumerate}
+    \item I neuroni di input vengono replicati per ogni elemento rappresentato nella finestra
+    \item Visibilità limitata della grandezza della finestra
+\end{enumerate}
+\subsection{Le Reti Parzialmente Ricorrenti}
+Un modo semplice di elaborare strutture temporali consiste nell'aggiungere connessioni riccorenti che forniscano un input ricorrente proveniente dallo stesso strato o da strati superiori. In questo modo le risposte delle reti dipendono dal classico input \textit{feed-forward} derivante dagli strati inferiori e dagli input degli strati precedenti.\\
+\subsubsection{Addestramento delle Reti Ricorrenti}
+Le reti parzialmente ricorrenti si possono addestrare con l'algoritmo di \textit{back-propagation} dato che la loro struttura temporale può essere srotolata per trasformara in una struttura spaziale.
+
+\subsection{Long-Short Term Memory Network- LSTM}
+Le \textit{SRN - Reti di Hellman} hanno una memoria a breve termine e quindi non riescono ad apprendere dipendenze temporali lontane nella sequenza di input. Questo problema viene risolto nelle reti \textit{LSTM} in cui lo strato nascosto è formato da unità \textit{LSTM} che hanno una struttura più complessa rispetto ai tipici neuroni nascosti.\\
+Le unità \textit{LSTM} operano attrvaeso delle porte che definiscono se l'informazione vada mantenuta nella memoria temporanea e quanto avanti nel tempo dovrebbe essere propagata. Esistono tre tipi di porte, ossia:
+\begin{itemize}
+    \item Input Gate: lascia entrare l'input nella cella di memoria
+    \item Output Gate: lascia uscire il valore corrente dalla cella di memoria
+    \item Forget Gate: resetta il valore corrente nella cella di Memoria
+\end{itemize}
+
+Da ricordare inoltre che ogni gate ha il suo insieme di pesi sinaptici.
+
+\subsection{Deep Recurrent Neural Network (RNN) per le sequenze}
+Questo rappresenta un Deep network con strati nascosti multipli di unità \textit{LSTM}. L'input è un elemento della sequenza, mentre l'output è l'elemento successivo della sequenza. La predizione può essere a step singolo (la rete viene testata sulla predizione del prossimo elemento) o multi step (la predizione del prossimo elemento è utilizzata come input così da ottenere una sequenza di predizioni successive).
+
+\subsection{Word Embeddings}
+La modellizzazione di sequenze per l'elaborazione del linguaggio naturale è più efficente al livello della parola. Questo richiede di precodificare le singole parole con vettori di lunghezza fissa usando algoritmi di ebedding.
+Normalmente questi algoritmi presentano le seguenti proprietà:
+\begin{itemize}
+    \item Gli embeddings preservano relazioni semantiche (parole vicine nello spazio vettoriale hanno un significato simile)
+    \item Composizionalità: operazioni lineari sui vettori producono risultati coerenti.
+\end{itemize}
+
+
+
+
+
+
+
+
 
 \section{Laboratori}
 \subsection{Laboratorio 1 - Il Percettrone e un Problema Lineare}
