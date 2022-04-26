@@ -1,6 +1,6 @@
 \documentclass[12pt, a4paper]{article}
 \usepackage[utf8]{inputenc}
-\usepackage{hyperref}   % PER I LINK INTERNI ED ESTRENI
+\usepackage{hyperref}   % PER I LINK INTERNI ED ESTERNI
 \usepackage{graphicx}   % PER LE IMMAGINI
 \usepackage{amsmath}    % PER LE FRAZIONI
 \usepackage{listings}   % PER IL CODICE
@@ -37,7 +37,6 @@
     linkcolor=black,
     urlcolor=cyan,
     }
-
 
 \title{Intelligenza Artificiale}
 \author{Soldà Matteo }
@@ -84,7 +83,7 @@ L'intelligenza artificiale stretta (\textit{Narrow Artificial Intelligence}), no
 L'intelligenza artificiale generale (\textit{Artificial General Intelligence - AGI}), nota anche come IA forte, dovrebbe consentire alle macchine di applicare conoscenze e abilità in diversi contesti anche nuovi. Tutt'oggi, questo obiettivo non è stato realizzato e non è detto che sarà mai possibile.
 
 \subsection{IA Simbolica e IA Neurale}
-In base alla definzione di "intelligenza", possiamo distinguere due tipi di Intelligenza Artificiale:
+In base alla definizione di "intelligenza", possiamo distinguere due tipi di Intelligenza Artificiale:
 \begin{itemize}
     \item IA Simbolica (Classica): se l'intelligenza viene vista come la manipolazione di strutture simboliche di rappresentazione della conoscenza, l'IA  si può realizzare in un computer scrivendo un programma.
     \item IA Neurale: se l'intelligenza viene vista come l'attività di neuroni nel formare complesse reti neurali, allora l'IA si può realizzare simulando delle reti neurali.
@@ -136,7 +135,7 @@ Gli elementi fondamentali di una rete neurale artificiale sono:
 \subsubsection{Il Neurone}
 Un neurone formale è un modello matematico che cerca di catturare gli aspetti fondamentali del funzionamento neuronale.\\
 Questi elementi comunicano con gli altri neuroni unidirezionalmente o bidirezionalmente con gli altri neuroni tramite delle connessioni, le quali hanno un peso indicante la forza della connessione.\\
-La connessione può essere rappresentata da un valore positivo (eccitatorio) o negativo (inibitorio).\\
+La connessione può essere rappresentata da un valore positivo (eccitatore) o negativo (inibitorio).\\
 L'input che un neurone riceve da ciascuno dei neuroni a sé collegati è rappresento moltiplicando il segnale proveniente da quel neurone per il preso sulla connessione.\\
 L'input totale del neurone è la sommatoria delle attivazione che il neurone riceve da tutti gli altri neuroni.\\
 Lo stato di attivazione finale viene calcolato attraverso la funzione di attivazione (o di output) del neurone. Normalmente si utilizza la funzione sigmoide, la quale presenta sempre valori compresi nell'intervallo [0,1].\\
@@ -322,7 +321,7 @@ L'\textbf{overfitting} si verifica quando continua a migliorare la prestazione s
 Questo avviene perché la relazione tra gli elementi non è regolare (ossia ha tante eccezioni) e i dati contengono rumore, quindi la rete apprende anche il rumore nei dati usati per l'addestramento.
 
 \subsection{Evitare l'Overfitting}
-Per evitare l'oberfitting (migliorando quindi la generalizzazione), bisogna utilizzare reti neurali non troppo potenti perché questo permette di apprendere le regolarità statiche nei dati piuttosto che memorizzare i pattern di training. Questo si può ottenere limitando il numero di unità nascoste,
+Per evitare l'overfitting (migliorando quindi la generalizzazione), bisogna utilizzare reti neurali non troppo potenti perché questo permette di apprendere le regolarità statiche nei dati piuttosto che memorizzare i pattern di training. Questo si può ottenere limitando il numero di unità nascoste,
 utilizzando \textbf{\textit{Early Stopping}} ossia quando utilizziamo un set di pattern solo per la verifica di overfitting durante l'apprendimento e fermarlo prima che l'errore sul validation set inizi ad aumentare e utilizzando il \textbf{decadimento dei pesi} (o \textit{weight decay}), ossia facendo in modo che i pesi abbiano la tendenza spontanea a diminuire portando i pesi deboli a tendere verso lo 0 (avendo meno pesi da considerare avremo anche meno parametri, evitando quindi di apprendere anche il rumore nei dati).
 
 \subsection{Training VS Testing}
@@ -330,10 +329,10 @@ utilizzando \textbf{\textit{Early Stopping}} ossia quando utilizziamo un set di 
 Esso è un insieme di esempi (\textit{pattern}) per l'addestramento. Sono utilizzati dall'algoritmo di apprendimento per trovare i valori dei pesi delle connessioni.
 
 \paragraph{Validation Set}
-Rappresenta un insieme di esempi utilizzati per ottimizzare parametri di apprendimento (\textit{iper-parametri}), il numero di unità nascoste e per decidere quando fermare l'apprendimento
+Rappresenta un insieme di esempi utilizzati per ottimizzare parametri di apprendimento (\textit{iperparametri}), il numero di unità nascoste e per decidere quando fermare l'apprendimento
 
 \paragraph{Test Set}
-Insieme di esempi utilizzati per valutare la performace finale del modello\\
+Insieme di esempi utilizzati per valutare la performance finale del modello\\
 \\
 \textit{Perché utilizzare set diversi per validation e test?} Il set di validazione viene utilizzato per selezionare il modello migliore, quindi l'accuratezza sul validation set ha un bias sovrastimato.\\
 \textit{Come vanno ripartiti gli esempi?} Bisognerebbe sempre utilizzare quanti più dati possibili per l'addestramento. Se ci sono molti esempio, la suddivisione potrebbe essere, in percentuale, 50-25-25.
@@ -415,7 +414,7 @@ Solitamente questo si applica per problemi di:
 \begin{itemize}
     \item Riconoscimento del parlato
     \item Riconoscimento di azioni
-    \item Predizione della dinamica in oggetti in moviemento
+    \item Predizione della dinamica in oggetti in movimento
     \item Generazione di testo o musica
     \item Predizione di serie storiche
 \end{itemize}
@@ -429,13 +428,13 @@ Qui però sorgono due problemi:
     \item Visibilità limitata della grandezza della finestra
 \end{enumerate}
 \subsection{Le Reti Parzialmente Ricorrenti}
-Un modo semplice di elaborare strutture temporali consiste nell'aggiungere connessioni riccorenti che forniscano un input ricorrente proveniente dallo stesso strato o da strati superiori. In questo modo le risposte delle reti dipendono dal classico input \textit{feed-forward} derivante dagli strati inferiori e dagli input degli strati precedenti.\\
+Un modo semplice di elaborare strutture temporali consiste nell'aggiungere connessioni ricorrenti che forniscano un input ricorrente proveniente dallo stesso strato o da strati superiori. In questo modo le risposte delle reti dipendono dal classico input \textit{feed-forward} derivante dagli strati inferiori e dagli input degli strati precedenti.\\
 \subsubsection{Addestramento delle Reti Ricorrenti}
-Le reti parzialmente ricorrenti si possono addestrare con l'algoritmo di \textit{back-propagation} dato che la loro struttura temporale può essere srotolata per trasformara in una struttura spaziale.
+Le reti parzialmente ricorrenti si possono addestrare con l'algoritmo di \textit{back-propagation} dato che la loro struttura temporale può essere srotolata per trasformarla in una struttura spaziale.
 
 \subsection{Long-Short Term Memory Network- LSTM}
 Le \textit{SRN - Reti di Hellman} hanno una memoria a breve termine e quindi non riescono ad apprendere dipendenze temporali lontane nella sequenza di input. Questo problema viene risolto nelle reti \textit{LSTM} in cui lo strato nascosto è formato da unità \textit{LSTM} che hanno una struttura più complessa rispetto ai tipici neuroni nascosti.\\
-Le unità \textit{LSTM} operano attrvaeso delle porte che definiscono se l'informazione vada mantenuta nella memoria temporanea e quanto avanti nel tempo dovrebbe essere propagata. Esistono tre tipi di porte, ossia:
+Le unità \textit{LSTM} operano attraverso delle porte che definiscono se l'informazione vada mantenuta nella memoria temporanea e quanto avanti nel tempo dovrebbe essere propagata. Esistono tre tipi di porte, ossia:
 \begin{itemize}
     \item Input Gate: lascia entrare l'input nella cella di memoria
     \item Output Gate: lascia uscire il valore corrente dalla cella di memoria
@@ -448,15 +447,39 @@ Da ricordare inoltre che ogni gate ha il suo insieme di pesi sinaptici.
 Questo rappresenta un Deep network con strati nascosti multipli di unità \textit{LSTM}. L'input è un elemento della sequenza, mentre l'output è l'elemento successivo della sequenza. La predizione può essere a step singolo (la rete viene testata sulla predizione del prossimo elemento) o multi step (la predizione del prossimo elemento è utilizzata come input così da ottenere una sequenza di predizioni successive).
 
 \subsection{Word Embeddings}
-La modellizzazione di sequenze per l'elaborazione del linguaggio naturale è più efficente al livello della parola. Questo richiede di precodificare le singole parole con vettori di lunghezza fissa usando algoritmi di ebedding.
+La modellizzazione di sequenze per l'elaborazione del linguaggio naturale è più efficiente al livello della parola. Questo richiede di precodificare le singole parole con vettori di lunghezza fissa usando algoritmi di embedding.
 Normalmente questi algoritmi presentano le seguenti proprietà:
 \begin{itemize}
     \item Gli embeddings preservano relazioni semantiche (parole vicine nello spazio vettoriale hanno un significato simile)
     \item Composizionalità: operazioni lineari sui vettori producono risultati coerenti.
 \end{itemize}
 
+\newpage
+\section{Apprendimento Non Supervisionato}
+In questo tipo di apprendimento, il sistema cerca di scoprire le regolarità statiche del mondo semplicemente osservando l'ambiente circostante, quindi la percezione e la cognizione sono visti come processi di model building.
+\subsection{Caratteristiche}
+I vantaggi dell'apprendimento supervisionato sono:
+\begin{itemize}
+    \item L'apprendimento non richiede l'etichettazione dei dati forniti in esempio, quindi il sistema può sfruttare l'informazione grezza presente nell'ambiente
+    \item Una volta appreso un buon modello interno dell'ambiente, esso può essere utilizzato anche per apprendere più facilmente task supervisionati
+    \item Stesso metodo utilizzato dagli animali (e quindi anche dagli umani) per l'apprendimento
+    \item Può essere implementato usando meccanismi di apprendimento biologicamente plausibili
+\end{itemize}
+A suo discapito, però:
+\begin{itemize}
+    \item Spesso non è chiaro quali \textit{features} dell'ambiente saranno poi utili per risolvere un determinato compito o costituisca una buona rappresentazione
+    \item Richiede molte risorse computazionali
+    \item Dalla semplice osservazione non possiamo inferire relazioni causali
+\end{itemize}
 
+\subsection{Riduzione Lineare della Dimensionalità}
+La \textit{Principal Component Analysis} è una tecnica statistica che cerca di trovare la direzione di massima variabilità in un certo insieme di dati; più precisamente, il suo scopo è di scoprire un insieme di variabili linearmente scorrelate che spieghino la maggior parte della varianza osservata nella distribuzione.
+\subsubsection{Autoencoders}
+Possiamo costruire una rete neurale che riduce la dimensionalità dei dati semplicemente chiedendo che ricostruisca in output il pattern presentato in input. La funzione di errore è rappresentata dall'errore in ricostruzione.
+Se forziamo la rete neurale a codificare i dati di input utilizzando un numero ridotto di neuroni nascosti, imparerà a comprimere la distribuzione dei dati estraendone le features più rilevanti.
+Utilizzando neuroni nascosti con funzioni di attivazione lineare, il risultato sarà molto simile a quello ottenuto con le PCA, mentre se utilizziamo funzioni di attivazione non lineari, effettueremo invece una riduzione non lineare della dimensionalità.
 
+\paragraph{Denoising Autoencoders} Si parla di \textit{denoising autoencoders} quando l'estrazione delle features viene resa più robusta introducendo del rumore dei dati, il quale funge da regolarizzatore.
 
 
 
@@ -704,7 +727,7 @@ from sklearn.neural_network import MLPClassifier
 \end{lstlisting}
 
 Fatto questo ,ora bisogna definire l'array di input e di output desiderato per lo XOR.
-In questa libreria, sia la struttura del modello che l'algoritmo di apprendimento uisato per modificarne i pesi sono definiti all'interno della classe MLPClassifier. Quando creiamo una nuova istanza della classe dobbiamo quindi specificare i parametri che descrivono la struttura del modello, l'algoritmo di apprendimento usato e quelli cheregolano l'algoritmo di apprendimento.\\
+In questa libreria, sia la struttura del modello che l'algoritmo di apprendimento usato per modificarne i pesi sono definiti all'interno della classe MLPClassifier. Quando creiamo una nuova istanza della classe dobbiamo quindi specificare i parametri che descrivono la struttura del modello, l'algoritmo di apprendimento usato e quelli che regolano l'algoritmo di apprendimento.\\
 Il parametro \textit{random\textunderscore seed} serve per aumentare la riproducibilità di valori dipendenti di variabili casuali.
 
 \begin{lstlisting}[language=Python, caption=Inizializzazione]
@@ -720,7 +743,7 @@ MLP.score(input_xor, target_xor)
 
 \subsubsection{Il Dataset Hearth Disease}
 Adesso utilizzeremo il dataset del laboratorio precedente per testare la classificazione tramite MLP e valutando il funzionamento con la curva ROC e la matrice di confusione.
-Per ovvi motivi, di seguito saranno riportati solo i passaggi che risultano diversi a quelli del precedente laboratiorio.
+Per ovvi motivi, di seguito saranno riportati solo i passaggi che risultano diversi a quelli del precedente laboratorio.
 
 \begin{lstlisting}[language=Python, caption=Importazione delle Librerie e Apprendimento con Funzione di Costo]
     from sklearn.model_selection import train_test_split
