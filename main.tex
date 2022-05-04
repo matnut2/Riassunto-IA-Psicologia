@@ -481,9 +481,36 @@ Utilizzando neuroni nascosti con funzioni di attivazione lineare, il risultato s
 
 \paragraph{Denoising Autoencoders} Si parla di \textit{denoising autoencoders} quando l'estrazione delle features viene resa più robusta introducendo del rumore dei dati, il quale funge da regolarizzatore.
 
+\subsection{Reti di Hopfield}
+\subsubsection{Regola di Hebb e Memorie Associative}
+La regola di Hebb si può utilizzare per apprendere i pesi sinaptici in reti più complesse, rendendo così possibile memorizzare interi pattern. \\
+Questa ispirazione deriva dalla meccanica statistica dove non vengono considerate equazioni deterministiche per descrivere il comportamento dei sistemi fisici, ma si definisce il tutto tramite il linguaggio probabilistico mettendo in relazione proprietà microscopiche con proprietà macroscopiche. \\
+Il concetto si basa sui \href{https://it.wikipedia.org/wiki/Modello_di_Ising}{modelli di Ising}, dove la dinamica è governata da una funzione di energia che dipende dalla temperatura del sistema. Il sistema esplora varie configurazioni e si assesta in quelle più probabili (ossia con energia minima). Normalmente il sistema non raggiunge uno stato uniforme (minimizzazione dell'energia sul piano globale), ma si assesta in configurazioni eterogenee dove l'energia è minimizzata localmente. (\textit{frustrazione geometrica}). \\
+La frustrazione risulta utile in quanto i non tutti i sistemi finiscono per essere omogenei, infatti in un sistema omogeneo non c'è informazione. \\
+Se sostituiamo ad "atomi" la parola "neuroni", otteniamo le interazioni locali che si possono modificare attraverso l'apprendimento Hebbiano.
 
+\subsubsection{Definizione di Reti di Hopfield}
+Queste possono essere utilizzate per memorizzare e recuperare pattern. La memorizzazione avviene cambiano gradualmente la forza delle connessioni e il recupero avviene in modo dinamico, aggiornando iterativamente lo stato dei neuroni finchè non si raggiunge uno stato stabile (\textit{attrattore}).\\
+In analogia con la meccanica statistica, l'idea di base è di usare una funzione di energia per specificare quali stati della rete sono più probabili. Lo scopo dell'apprendimento è di assegnare alta probabilità alle configurazioni osservate nel training set e quando si presenta un pattern corrotto, la rete gradualmente si assesterà nella configurazione corrispondente al pattern memorizzato più simile.\\
+\\
+Questo tipo di rete è ricorrente con topologia completamente connessa (escluse le autoconnessioni) e sono quindi assimilabili a un grafo non direzionato. Tutti i neuroni sono visibili e quindi non ci sono neuroni nascosti.\\
+L'energia \(E\) di una certa configurazione delle attivazioni dei neuroni è data da:
+\[E=-\frac{1}{2}\sum_{i,j}w_{ij}x_ix_j\]
+Gli attrattori della rete corrispondono ai punti di minimo locale della funzione di energia e rappresentato pattern stabili di attività che codificano una memoria (ossia un determinato pattern di input).\\
+\\
+I neuroni hanno stati binari \([-1, 1]\) e la loro attivazione è calcolata utilizzando la regola:
+\[
+    x_i = 
+    \begin{cases} 
+        1, & \mbox{se } \sum_j w_{ij}x_ix_j \geq \Theta_i \\
+        -1, & \mbox{altrimenti}
+    \end{cases}
+\]
 
+In altre parole: ciascun neuroni effettua una somma pesata delle attività di tutti gil altri neuroni e si attiva solo se i el valore superano una determinata soglia.\\
+Hopfield dimostrò che se i pesi hanno valori appropriati, le attivazioni della rete convergeranno sempre verso uno stato stabile dove le attivazioni non cambiano più (quindi si dice che la rete raggiunge l'equilibrio).\\
 
+%%%%%%%% DA RIPRENDERE DALLA SLIDE 17 %%%%%%%%%%%%%%%%%%%%%%
 
 
 \section{Laboratori}
