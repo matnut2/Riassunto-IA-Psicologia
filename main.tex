@@ -509,9 +509,19 @@ I neuroni hanno stati binari \([-1, 1]\) e la loro attivazione è calcolata util
 
 In altre parole: ciascun neuroni effettua una somma pesata delle attività di tutti gil altri neuroni e si attiva solo se i el valore superano una determinata soglia.\\
 Hopfield dimostrò che se i pesi hanno valori appropriati, le attivazioni della rete convergeranno sempre verso uno stato stabile dove le attivazioni non cambiano più (quindi si dice che la rete raggiunge l'equilibrio).\\
+\\
+L'apprendimento in questo tipo di rete utilizza il metodo di apprendimento Hebbiano, quindi a ogni pattern di training viene pesato iterativamente alla rete vincolandolo nei neuroni e le connessioni fra i neuroni vengono modificate in base ala regola:
+\[\Delta w_{ij}=\eta x_ix_j\]
+Nelle reti di Hopfield si modifica la funzione di energia in modo tale da creare attrattori corrispondenti ai pattern di training e allo stesso tempo, l'energia di configurazioni improbabili deve essere aumentata.
+Questo tipo di rete può immagazzinare un numero limitato di pattern indipendenti, che è stato dimostrato essere \(138*k\) dove \(k\) rappresenta il numero di neuroni della rete. Questa capacità può essere aumentata aggiungendo neuroni (e passando quindi alle \textbf{Reti di Boltzman}). inoltre, ilcrementando il numero di pattern da memroizzare, la rete svilupperà anche un certo numero di memoria "sbagliate" (chiamate attrattori spuri) che non corrispondono ai minimi locali ma rappresentano comunque stati di equilibrio e possono impedire alla rete di recuperare la memoria corretta. Il problema può essere mitigato introducendo una \textbf{dinamica stocastica}.\\
 
-%%%%%%%% DA RIPRENDERE DALLA SLIDE 17 %%%%%%%%%%%%%%%%%%%%%%
+\subsubsection{Dinamica Stocastica}
+Per evitare di rimanere intrappolati in cattivi minimi locali, possiamo sostituire la funzione di attivazione deterministica con una funzione stocastica definita come:
+\[\frac{1}{1+e^{-\frac{1}{T} \sum_j w_{ij}x_j}}\]
+Manipolando la curvatura della sigmoide, la temperatura (definita con \(T\)) definisce quanto il sistema è stocastico, ovvero quanto la sua dinamica sarà rumorosa o casuale.
+Per raggiungere il miglior minimo di energia cominciamo con una temperatura alta nel sistema e poi gradualmente lo raffreddiamo: la temperatura viene progressivamente ridotta finchè il sistema diventa deterministico. Questa procedura di ottimizzazione è ispirata dal metodo di ricottura dei metalli. 
 
+\subsection{Reti Neurali Generative}
 
 \section{Laboratori}
 \subsection{Laboratorio 1 - Il Percettrone e un Problema Lineare}
