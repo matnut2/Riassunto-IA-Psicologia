@@ -536,7 +536,7 @@ Le \textit{RBM} sono rappresentate da un grafo bipartito completamente connesso 
 \[E(v, h) = -b^Tv-c^Th-h^TWv\]
 \[P(v, h) = \frac{e^{-E(v,h)}}{Z}\]
 
-Essendo tutti i neuroni di uno stesso layer condizionatamente indipendenti, possiamo inferirne lo stato in un singolo step:
+Essendo tutti i neuroni di uno stesso layer condizionatamente indipendenti, possiamo inferirne lo stato in un singolo step:\\
 \textbf{Riconoscimento (bottom-up)}
 \[P(h|v) = \Pi_i P(h_i|v)\]
 
@@ -576,5 +576,23 @@ Le \textit{RBM} possono essere combinate per apprendere modelli interni più com
 
 \paragraph{Generative Adversial Networks}
 L'obiettivo di questo modello è di ingannare un classificatore
+
+\newpage
+\section{Apprendimento con Rinforzo}
+Gli agenti cognitivi sono solitamente dotati di un corpo con effettori che possono essere utilizzati per manipolare attivamente l'ambiente. Bisogna quindi cercare un modo per capire quali variabili siano cause e quali siano effetti.\\
+Per fare questo dobbiamo manipolare attivamente l'ambiente se vogliamo passare dalla scoperta di semplici correlazioni alla scoperta di relazioni casuali: servono quindi esperimenti randomizzati e un ragionamento controfattuale.\\
+Lo sviluppo del reinforcement learning è stato ispirato dalle teorie psicologiche sull'apprendimento animale.
+\paragraph{Condizionamento Classico} la contingenza temporale degli stimoli gioca un ruolo fondamentale nell'apprendimento di associazioni stimolo-risposta.
+\paragraph{Condizionamento Operante} richiede all'animale di scegliere la risposta più appropriata per ricevere un rinforzo positivo (ed evitare una punizione).
+
+A questo punto però ci si chiede quali siano le azioni che dovrei intraprendere per massimizzare i guadagni futuri minimizzando le punizioni. Di seguito alcuni esempi:
+\begin{itemize}
+    \item Alcune azioni massimizzano il guadagno immediato ma sono controproducenti nel lungo termine. Viceversa, altre azioni sembrano inutili ma si riveleranno importanti in futuro. Una possibile soluzione è imparare a predire le conseguenze a lungo termine delle azioni.
+    \item L'ambiente solitamente è stocastico e quindi non possiamo essere sicuri che una particolare azione sia sempre appropriata o dia sempre lo stesso risultato. Una possibile soluzione è quella di effettuare scelte probabilistiche.
+    \item \textit{Exploration vs. Exploitation dilemma}: esplorare nuovi stati senza sapere cosa aspettarsi o accontentarsi di ciò che si ha? Per incoraggiare l'avanscoperta, si usano procedure simili all'\textit{anealling}.
+\end{itemize}
+
+\subsection{Un Framework Matematico per il Reinforcement Learning}
+%%% RIPRENDERE DA SLIDE 13 - APPRENDIMENTO CON RINFORZO %%%
 
 \end{document}
