@@ -1,0 +1,53 @@
+\newpage
+\section{Apprendimento Automatico}
+Il \textit{Machine Learning} comprende un insieme di metodi e algoritmi che permettono ad un software di apprendere dall'esperienza.\\
+Esistono diversi tipi di apprendimento, i quali hanno scopi differenti e algoritmi completamente diversi. La qualità dell'apprendimento tipicamente migliora all'aumentare del numero di esempi disponibili per l'addestramento (efficiente su \textit{Big Data}.\\
+Le reti neurali artificiali rappresentato una classe importante di algoritmi di apprendimento.
+
+\subsection{Tre Tipi di Apprendimento}
+Immaginiamo un sistema (biologico o artificiale) che riceve una serie di input sensoriali \(x_1,x_2,x_3,x_4,x_n\):
+\begin{itemize}
+    \item Apprendimento Supervisionato: viene fornito anche l'output desiderato \(y_1,y_2,y_3,y_m\). Lo scopo è quello di imparare a produrre l'output corretto da un nuovo input.
+    \item Apprendimento Non-Supervisionato: lo scopo è quello di costruire rappresentazioni dell'input scoprendone le proprietà più importanti e informative. Queste possono essere in seguito utilizzate per il ragionamento, la decisione, la comunicazione, etc.
+    \item Apprendimento per Rinforzo: il sistema produce azioni che hanno un effetto sul mondo, e riceve rinforzi (o punizioni) \(r_1,r_2,r_3,r_z\). Lo scopo è quello di imparare ad agire in un modo che massimizza il rinforzo nel lungo termine.
+\end{itemize}
+
+\subsection{Apprendimento nelle Reti Neurali}
+L'apprendimento in una rete neurale consiste nel trovare l'insieme di pesi delle connessioni che permette alla rete di produrre la risposta appropriata per un determinato input. La forma più semplice è la regola di Hebb,la quale afferma che "\textit{se due neuroni collegati tra loro sono contemporaneamente attivi, l'efficacia sinaptica della connessione viene aumentata}".\\
+L'apprendimento Hebbiano è biologicamente plausibile e corrisponde al fenomeno del \href{https://it.wikipedia.org/wiki/Long_term_potentiation}{Potenziamento a Lungo Termine (\textit{Long Term Potentiation - LTP})}.\\
+Formalmente, se vogliamo associare un pattern di input \(x\) con un pattern di output \(y\), otterremo che \[\Delta w_{ij} = \eta y_ix_j\]
+Nella sua forma originale, la regola può solo rinforzare le connessioni, inoltre i valori dei pesi non hanno un limite. Varianti della regola di Hebb superano questi limiti (per esempio, la regola della covarianza per le \href{https://it.wikipedia.org/wiki/Rete_di_Hopfield}{reti di Hopfield}.\\
+Da notare che generalmente le regole di apprendimento seguaci della regola Hebbiana sono utilizzate prevalentemente in un conteso di apprendimento non supervisionato.\\
+Generalmente, in una rete neurale si ha che:
+\begin{itemize}
+    \item Valori iniziali dei pesi sinaptici assegnati in modo casuale
+    \item Presentazione ripetuta dei pattern di addestramento
+    \begin{itemize}
+        \item Apprendimento Supervisionato: input + target
+        \item Apprendimento Non-Supervisionato: input
+    \end{itemize}
+    \item L'apprendimento consiste nella modifica dei pesi, ovvero il calcolo di \(\Delta w\) rispetto a \(w\). L'aggiornamento può avvenire dopo ogni pattern (\textit{online learning}) oppure dopo ogni epoca (\textit{batch learning})
+    \item Per non stravolgere o cancellare le conoscenze precedentemente apprese, viene utilizzata solo una frazione della modifica sinaptica calcolata, definita come la costante \(\eta\), definita come \textit{learning rate} (o tasso di apprendimento), formalmente definita come \(w^t_{ij}=w^{t-1}_{ij}+\eta \Delta w^t_{ij}\)
+\end{itemize}
+
+\subsection{Reti Neurali e Memoria}
+Una rete non possiede memoria, proprio per questo i pesi delle connessioni (pesi sinaptici) rappresentato comunque le conoscenze a lungo termine, dato che essi non si cancellano, ma si modificano gradualmente solo se c'è ulteriore apprendimento.\\
+L'attivazione dei neuroni, invece, è un fenomeno temporaneo e specifico per lo stimolo presentato e si esaurisce causandone la scomparsa. Tuttavia, se l'attivazione non cessa bruscamente, può influenzare l'elaborazione dello stimolo successivo (processo alla base dei fenomeni di \href{https://it.wikipedia.org/wiki/Priming_(psicologia)}{\textit{priming}}.\\
+Alcuni compiti cognitivi richiedono di ricordare per breve tempo informazioni che non sono più presenti utilizzando la memoria di lavoro (o a breve termine). In una rete neurale questo si può realizzare mantenendo attivi determinati neuroni anche quando l'input non è più presente.
+
+\subsection{Il Problema dell'Interferenza}
+\subsubsection{Apprendimento Associativo AB-AC}
+Il compito di apprendimento associativo AB-AC porta alla luce il problema dell'interferenza nella memoria.\\
+Prima di andare avanti, descriviamo il problema dell'apprendimento associativo AB-AC:\\
+Vi sono due liste di coppie di parole: c'è la lista AB dove ogni coppia è costituita da una parola appartenente ad A e una parola appartenente a B, e una seconda lista AC dove ogni coppia è costituita da una parola appartenente ad A e una appartenente a C.\\
+I partecipanti, dopo aver studiato la lista AB devono rievocare la parola B appropriata per ogni parola A, poi studiano la lista AC e vengono interrogati su entrambe le liste.
+
+\subsubsection{Interferenza Catastrofica}
+Se una rete neurale viene sottoposta al compito di apprendimento associativo AB-AC si ottiene un effetto di interferenza ancora maggiore che negli esseri umani. Questo fenomeno viene denominato \textit{interferenza catastrofica} o \textit{catastrophic forgetting}.\\
+I due fattori che determinano l'interferenza in una rete neurale sono il \href{https://www.sciencedirect.com/science/article/abs/pii/S1364661316300432}{grado di sovrapposizione} e il tasso di apprendimento elevato.\\
+Il grado di sovrapposizione delle rappresentazioni torna utile però in quanto permette l'integrazione e la generalizzazione delle conoscenze.\\
+Il cervello umano ha risolto questo problema evolvendo due sistemi di apprendimento separati e complementari: ippocampo e neocorteccia.
+
+\subsubsection{Due Sistemi Complementari di Apprendimento e Memoria}
+L'ippocampo è la componente specializzata nell'apprendimento rapido e non soggetto a interferenza, esso funziona tramite rappresentazioni sparse.\\
+La neocorteccia apprende lentamente e integra gradualmente le esperienze estraendo le conoscenze generali sul mondo, essa funziona tramite rappresentazioni distribuite.

@@ -1,0 +1,71 @@
+\newpage
+\section{Reti Neurali Artificiali}
+
+\subsection{Definizione}
+Le reti neurali artificiali sono sistemi di elaborazione inspirati dal funzionamento dei sistemi biologici caratterizzati dalla capacità di apprendere compiti complessi con lo scopo di catture i principi di base dalla complessità biologica, piuttosto che riprodurla per intero.
+
+\subsection{Architettura}
+Una rete neurale artificiale ha un'architettura ad elaborazione distribuita e parallela che utilizza:
+\begin{itemize}
+    \item Semplici unità di elaborazione
+    \item Elevato grado di interconnessione
+    \item Semplici messaggi numerici scalari (segnale analogico)
+    \item Interazioni adattive tra elementi
+\end{itemize}
+
+Questa struttura deve possedere delle importanti proprietà, ossia:
+\begin{itemize}
+    \item Apprendere dall'esperienza ma con la possibilità di rispondere anche in situazioni nuove
+    \item Assenza di conoscenze esplicite riguardanti il problema
+    \item Adattabilità in situazioni caotiche e/o caotiche (presenza di disturbi nei dati)
+\end{itemize}
+
+\subsection{Elementi di Base}
+Gli elementi fondamentali di una rete neurale artificiale sono:
+\begin{itemize}
+    \item Neuroni (Unità di Elaborazione): fungono da rilevatori che segnalano attraverso la loro attivazione
+    \item Reti Neurali: connettono, coordinano, amplificano e selezionano i pattern di attivazione sui neuroni
+    \item Apprendimento: organizza le reti per eseguire compiti e per sviluppare modelli interni dell'ambiente.
+\end{itemize}
+
+\subsubsection{Il Neurone}
+Un neurone formale è un modello matematico che cerca di catturare gli aspetti fondamentali del funzionamento neuronale.\\
+Questi elementi comunicano con gli altri neuroni unidirezionalmente o bidirezionalmente con gli altri neuroni tramite delle connessioni, le quali hanno un peso indicante la forza della connessione.\\
+La connessione può essere rappresentata da un valore positivo (eccitatore) o negativo (inibitorio).\\
+L'input che un neurone riceve da ciascuno dei neuroni a sé collegati è rappresento moltiplicando il segnale proveniente da quel neurone per il preso sulla connessione.\\
+L'input totale del neurone è la sommatoria delle attivazione che il neurone riceve da tutti gli altri neuroni.\\
+Lo stato di attivazione finale viene calcolato attraverso la funzione di attivazione (o di output) del neurone. Normalmente si utilizza la funzione sigmoide, la quale presenta sempre valori compresi nell'intervallo [0,1].\\
+Matematicamente, possiamo definire l'input totale al neurone \textbf{i} come:
+\[net_i=\sum_j^N(w_{ij} x_j(-b))\]
+dove:
+\begin{itemize}
+    \item \(net_i\) è l'input totale al neurone \(i\), ossia la sommatoria di tutti gli input
+    \item \(x_j\) è il segnale in arrivo dal neurone \(j\)
+    \item \(w_{ij}\) è il peso sinaptico della connessione tra il neurone \(j\) e il neurone ricevente \(i\)
+    \item \(b\) è la soglia o \textit{bias} del neurone
+\end{itemize}
+
+\subsubsection{Reti di Neuroni}
+L'architettura della rete serve per identificare l'organizzazione in gruppi o in strati dei neuroni, ossia la topologia della rete, e il modo in cui i neuroni sono collegati tra loro, ossia lo schema di connettività.
+\href{https://www.youtube.com/watch?v=aircAruvnKk}{Cliccando qui}, si potrà visionare un video del canale Youtube \href{https://www.youtube.com/channel/UCYO_jab_esuFRV4b17AJtAw}{\textit{"3Blue1Brown"}} che spiega abbastanza nel dettaglio cosa sia una rete neurale.
+
+\paragraph{Topologia della Rete}
+\begin{itemize}
+    \item Lo strato di input è formato dalle unità che ricevono direttamente informazioni dall'ambiente
+    \item Lo strato di output è formato dalle unità di output finale della rete
+    \item Le unità che non si trovano in contatto diretto con input o output sono chiamate unità nascoste. Le unità di input e output sono invece chiamate unità visibili
+    \item Quando ci sono più di due strati nascosti, parleremo di rete profonda (\textit{Deep Network})
+\end{itemize}
+
+\paragraph{Schema di Connettività}
+\begin{itemize}
+    \item Reti \textit{feed-forward}: ci sono solo connessioni unidirezionali da unità di input a unità nascoste a unità di output (\textit{bottom-up})
+    \item Reti ricorrenti: ci sono connessioni bidirezionali in cui l'attivazione può propagarsi all'indietro (\textit{top-down} o \textit{feedback})
+    \item Reti interamente ricorrenti: come le reti ricorrenti, ma ci sono anche connessioni intra-stato (tra neuroni dello stesso livello)
+\end{itemize}
+
+\subsection{Differenze tra Reti Neurali Biologiche e Artificiali}
+Nel tipico neurone artificiale, risultano mancanti: l'organizzazione spaziali dei contatti sinaptici, differenziazione tra neuroni eccitatori e inibitori, tipi diversi di sinapsi e la mancanza della dinamica del neurone con potenziali di azione.\\
+Quest'ultima mancanza può essere brevemente approfondita cliccando \href{https://it.wikipedia.org/wiki/Rete_neurale_spiking}{qui}, link del Professore riportato nelle slide.\\\\
+Nella tipica rete artificiale, risultano mancanti: la struttura laminare e l'organizzazione colonnare, l'organizzazione in mappe topografiche.
+Rimane inoltre la differenza di scala tra la rete biologica e quella artificiale, infatti, normalmente, nel cervello ci sono \(10^{11}\) neuroni, di cui ogni singolo neurone comunica direttamente con circa \(10^{4}\) altri neuroni.

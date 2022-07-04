@@ -1,0 +1,122 @@
+\newpage
+\section{Apprendimento Non Supervisionato}
+In questo tipo di apprendimento, il sistema cerca di scoprire le regolarità statiche del mondo semplicemente osservando l'ambiente circostante, quindi la percezione e la cognizione sono visti come processi di model building.
+\subsection{Caratteristiche}
+I vantaggi dell'apprendimento supervisionato sono:
+\begin{itemize}
+    \item L'apprendimento non richiede l'etichettazione dei dati forniti in esempio, quindi il sistema può sfruttare l'informazione grezza presente nell'ambiente
+    \item Una volta appreso un buon modello interno dell'ambiente, esso può essere utilizzato anche per apprendere più facilmente task supervisionati
+    \item Stesso metodo utilizzato dagli animali (e quindi anche dagli umani) per l'apprendimento
+    \item Può essere implementato usando meccanismi di apprendimento biologicamente plausibili
+\end{itemize}
+A suo discapito, però:
+\begin{itemize}
+    \item Spesso non è chiaro quali \textit{features} dell'ambiente saranno poi utili per risolvere un determinato compito o costituisca una buona rappresentazione
+    \item Richiede molte risorse computazionali
+    \item Dalla semplice osservazione non possiamo inferire relazioni causali
+\end{itemize}
+
+\subsection{Riduzione Lineare della Dimensionalità}
+La \textit{Principal Component Analysis} è una tecnica statistica che cerca di trovare la direzione di massima variabilità in un certo insieme di dati; più precisamente, il suo scopo è di scoprire un insieme di variabili linearmente scorrelate che spieghino la maggior parte della varianza osservata nella distribuzione.
+\subsubsection{Autoencoders}
+Possiamo costruire una rete neurale che riduce la dimensionalità dei dati semplicemente chiedendo che ricostruisca in output il pattern presentato in input. La funzione di errore è rappresentata dall'errore in ricostruzione.
+Se forziamo la rete neurale a codificare i dati di input utilizzando un numero ridotto di neuroni nascosti, imparerà a comprimere la distribuzione dei dati estraendone le features più rilevanti.
+Utilizzando neuroni nascosti con funzioni di attivazione lineare, il risultato sarà molto simile a quello ottenuto con le PCA, mentre se utilizziamo funzioni di attivazione non lineari, effettueremo invece una riduzione non lineare della dimensionalità.
+
+\paragraph{Denoising Autoencoders} Si parla di \textit{denoising autoencoders} quando l'estrazione delle features viene resa più robusta introducendo del rumore dei dati, il quale funge da regolarizzatore.
+
+\subsection{Reti di Hopfield}
+\subsubsection{Regola di Hebb e Memorie Associative}
+La regola di Hebb si può utilizzare per apprendere i pesi sinaptici in reti più complesse, rendendo così possibile memorizzare interi pattern. \\
+Questa ispirazione deriva dalla meccanica statistica dove non vengono considerate equazioni deterministiche per descrivere il comportamento dei sistemi fisici, ma si definisce il tutto tramite il linguaggio probabilistico mettendo in relazione proprietà microscopiche con proprietà macroscopiche. \\
+Il concetto si basa sui \href{https://it.wikipedia.org/wiki/Modello_di_Ising}{modelli di Ising}, dove la dinamica è governata da una funzione di energia che dipende dalla temperatura del sistema. Il sistema esplora varie configurazioni e si assesta in quelle più probabili (ossia con energia minima). Normalmente il sistema non raggiunge uno stato uniforme (minimizzazione dell'energia sul piano globale), ma si assesta in configurazioni eterogenee dove l'energia è minimizzata localmente. (\textit{frustrazione geometrica}). \\
+La frustrazione risulta utile in quanto i non tutti i sistemi finiscono per essere omogenei, infatti in un sistema omogeneo non c'è informazione. \\
+Se sostituiamo ad "atomi" la parola "neuroni", otteniamo le interazioni locali che si possono modificare attraverso l'apprendimento Hebbiano.
+
+\subsubsection{Definizione di Reti di Hopfield}
+Queste possono essere utilizzate per memorizzare e recuperare pattern. La memorizzazione avviene cambiano gradualmente la forza delle connessioni e il recupero avviene in modo dinamico, aggiornando iterativamente lo stato dei neuroni finché non si raggiunge uno stato stabile (\textit{attrattore}).\\
+In analogia con la meccanica statistica, l'idea di base è di usare una funzione di energia per specificare quali stati della rete sono più probabili. Lo scopo dell'apprendimento è di assegnare alta probabilità alle configurazioni osservate nel training set e quando si presenta un pattern corrotto, la rete gradualmente si assesterà nella configurazione corrispondente al pattern memorizzato più simile.\\
+\\
+Questo tipo di rete è ricorrente con topologia completamente connessa (escluse le autoconnessioni) e sono quindi assimilabili a un grafo non direzionato. Tutti i neuroni sono visibili e quindi non ci sono neuroni nascosti.\\
+L'energia \(E\) di una certa configurazione delle attivazioni dei neuroni è data da:
+\[E=-\frac{1}{2}\sum_{i,j}w_{ij}x_ix_j\]
+Gli attrattori della rete corrispondono ai punti di minimo locale della funzione di energia e rappresentato pattern stabili di attività che codificano una memoria (ossia un determinato pattern di input).\\
+\\
+I neuroni hanno stati binari \([-1, 1]\) e la loro attivazione è calcolata utilizzando la regola:
+\[
+    x_i = 
+    \begin{cases} 
+        1, & \mbox{se } \sum_j w_{ij}x_ix_j \geq \Theta_i \\
+        -1, & \mbox{altrimenti}
+    \end{cases}
+\]
+
+In altre parole: ciascun neuroni effettua una somma pesata delle attività di tutti gil altri neuroni e si attiva solo se i el valore superano una determinata soglia.\\
+Hopfield dimostrò che se i pesi hanno valori appropriati, le attivazioni della rete convergeranno sempre verso uno stato stabile dove le attivazioni non cambiano più (quindi si dice che la rete raggiunge l'equilibrio).\\
+\\
+L'apprendimento in questo tipo di rete utilizza il metodo di apprendimento Hebbiano, quindi a ogni pattern di training viene pesato iterativamente alla rete vincolandolo nei neuroni e le connessioni fra i neuroni vengono modificate in base ala regola:
+\[\Delta w_{ij}=\eta x_ix_j\]
+Nelle reti di Hopfield si modifica la funzione di energia in modo tale da creare attrattori corrispondenti ai pattern di training e allo stesso tempo, l'energia di configurazioni improbabili deve essere aumentata.
+Questo tipo di rete può immagazzinare un numero limitato di pattern indipendenti, che è stato dimostrato essere \(138*k\) dove \(k\) rappresenta il numero di neuroni della rete. Questa capacità può essere aumentata aggiungendo neuroni (e passando quindi alle \textbf{Reti di Boltzman}). inoltre, incrementando il numero di pattern da memorizzare, la rete svilupperà anche un certo numero di memorie "sbagliate" (chiamate attrattori spuri) che non corrispondono ai minimi locali ma rappresentano comunque stati di equilibrio e possono impedire alla rete di recuperare la memoria corretta. Il problema può essere mitigato introducendo una \textbf{dinamica stocastica}.\\
+
+\subsubsection{Dinamica Stocastica}
+Per evitare di rimanere intrappolati in cattivi minimi locali, possiamo sostituire la funzione di attivazione deterministica con una funzione stocastica definita come:
+\[\frac{1}{1+e^{-\frac{1}{T} \sum_j w_{ij}x_j}}\]
+Manipolando la curvatura della sigmoide, la temperatura (definita con \(T\)) definisce quanto il sistema è stocastico, ovvero quanto la sua dinamica sarà rumorosa o casuale.
+Per raggiungere il miglior minimo di energia cominciamo con una temperatura alta nel sistema e poi gradualmente lo raffreddiamo: la temperatura viene progressivamente ridotta finché il sistema diventa deterministico. Questa procedura di ottimizzazione è ispirata dal metodo di ricottura dei metalli. 
+
+\subsection{Reti Neurali Generative}
+In questo tipo di rete, invece di apprendere un mapping input-output, si cerca di scoprire la struttura latente dei dati in input creando un modello interno dell'ambiente che potrebbe aver generato tali dati. Le cause latenti di un segnale sensoriale costituiscono la sua rappresentazione interna, in ottica Bayesiana, rappresentano le ipotesi sio dati che vengono aggiornate ogni volta che osserviamo una nuova evidenza.\\
+
+\subsubsection{Le Macchine di Boltzmann}
+La macchine di Boltzman sono una variabile stocastica delle reti di Hopfield che sfruttano unità nascoste per estrarre correlazioni di ordine superiore dai dati. Inoltre, utilizzando neuroni nascosti, esse ottengono una capacità di memorizzazione superiore alle reti di Hopfield. Questi neuroni nascosti sono utilizzati per comprimere l'informazione. Questa architettura risulta però molto pesante computazionalmente.
+\\
+In questa macchina, i neuroni hanno stati binari \([0, 1]\) e la loro attivazione è calcolata in base ad una funzione stocastica
+\[\frac{1}{1+e^{-\frac{1}{T} \sum_j w_{ij}x_j}}\]
+Si comincia con un pattern di input vincolato alle unità visibili, mentre le unità nascoste vengono inizializzate con valori casuali. Aggiorniamo iterativamente il valore di attivazione di ciascun neurone finché non viene raggiunto l'equilibrio
+
+\subsubsection{Restricted Boltzmann}
+Le \textit{RBM} sono rappresentate da un grafo bipartito completamente connesso dove i neuroni nascosti diventano condizionalmente indipendenti e la complessità computazionale viene ridotta enormemente. la funzione di energia dipende comunque dai valori delle connessioni sinaptiche che costituiscono i modelli del modello generativo:
+\[E(v, h) = -b^Tv-c^Th-h^TWv\]
+\[P(v, h) = \frac{e^{-E(v,h)}}{Z}\]
+
+Essendo tutti i neuroni di uno stesso layer condizionatamente indipendenti, possiamo inferirne lo stato in un singolo step:\\
+\textbf{Riconoscimento (bottom-up)}
+\[P(h|v) = \Pi_i P(h_i|v)\]
+
+\textbf{Generazione (top-down)}
+\[P(v|h) = \Pi_i P(v_i|h)\]
+
+\subsubsection{Divergenza Contrastiva}
+L'idea di base è quella di minimizzare la discrepanza fra la distribuzione empirica dei dati e la distribuzione generata dal modello. Intuitivamente vogliamo fare in modo che le distorsioni dei dati prodotte dal modello assomiglino il più possibile ai dati veri.\\
+L'algoritmo è suddiviso in base al pattern di training:
+\begin{itemize}
+    \item Fase Positiva
+    \begin{enumerate}
+        \item Il patter è presentato alla rete
+        \item L'attivazione dei neuroni nascosti viene calcolata in un singolo step utilizzando la funzione di attivazione stocastica
+        \item Calcoliamo le correlazioni \(<v^+h^+>\)tra le unità visibili e le unità nascoste
+    \end{enumerate}
+
+    \item Fase Negativa
+    \begin{enumerate}
+        \item Partendo dalle attivazioni delle unità nascoste calcolate durante la fase positiva, si generalo le attivazioni nel layer visibile usando la funzioni di attivazione stocastica
+        \item Partendo da queste nuove attivazioni visibili, ricalcoliamo le attivazioni nascoste
+        \item Calcoliamo le correlazioni \(<v^-h^->\) fra le unità visibili e le unità nascoste
+    \end{enumerate}
+
+    \item I pesi vengono cambiati secondo la regola \(\Delta W = \alpha (v^+h^+ - v^-h^-)\)
+
+\end{itemize}
+
+\subsubsection{Deep Belief Networks}
+Le \textit{RBM} possono essere combinate per apprendere modelli interni più complessi:
+\begin{itemize}
+    \item Lo strato nascosto di una RBM è utilizzato come input per la RBM successiva
+    \item In questo modo possiamo apprendere molteplici livelli di rappresentazione
+    \item Features astratte vengono scoperte in modo non supervisionato, utilizzando features più semplici
+    \item Ogni strato di neuroni effettua una proiezione non lineare dell'input
+\end{itemize}
+
+\paragraph{Generative Adversial Networks}
+L'obiettivo di questo modello è di ingannare un classificatore

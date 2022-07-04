@@ -1,0 +1,36 @@
+\newpage
+\section{Apprendimento con Rinforzo}
+Gli agenti cognitivi sono solitamente dotati di un corpo con effettori che possono essere utilizzati per manipolare attivamente l'ambiente. Bisogna quindi cercare un modo per capire quali variabili siano cause e quali siano effetti.\\
+Per fare questo dobbiamo manipolare attivamente l'ambiente se vogliamo passare dalla scoperta di semplici correlazioni alla scoperta di relazioni casuali: servono quindi esperimenti randomizzati e un ragionamento controfattuale.\\
+Lo sviluppo del reinforcement learning è stato ispirato dalle teorie psicologiche sull'apprendimento animale.
+\paragraph{Condizionamento Classico} la contingenza temporale degli stimoli gioca un ruolo fondamentale nell'apprendimento di associazioni stimolo-risposta.
+\paragraph{Condizionamento Operante} richiede all'animale di scegliere la risposta più appropriata per ricevere un rinforzo positivo (ed evitare una punizione).
+
+A questo punto però ci si chiede quali siano le azioni che dovrei intraprendere per massimizzare i guadagni futuri minimizzando le punizioni. Di seguito alcuni esempi:
+\begin{itemize}
+    \item Alcune azioni massimizzano il guadagno immediato ma sono controproducenti nel lungo termine. Viceversa, altre azioni sembrano inutili ma si riveleranno importanti in futuro. Una possibile soluzione è imparare a predire le conseguenze a lungo termine delle azioni.
+    \item L'ambiente solitamente è stocastico e quindi non possiamo essere sicuri che una particolare azione sia sempre appropriata o dia sempre lo stesso risultato. Una possibile soluzione è quella di effettuare scelte probabilistiche.
+    \item \textit{Exploration vs. Exploitation dilemma}: esplorare nuovi stati senza sapere cosa aspettarsi o accontentarsi di ciò che si ha? Per incoraggiare l'avanscoperta, si usano procedure simili all'\textit{anealling}.
+\end{itemize}
+
+\subsection{Un Framework Matematico per il Reinforcement Learning}
+Il setting generale è formato da:
+\begin{itemize}
+    \item Set di stati ambientali \(S\)
+    \item Set di azioni che si possono effettuare \(A\)
+    \item Set di osservazioni sull'ambiente \(O\)
+    \item Regole di transizioni tra gli stati
+    \item Regole che specificano il guadagno immediato associato ad una certa transizione
+\end{itemize}
+
+Essenzialmente, ad ogni tempo \(t\), l'agente riceve una nuova osservazione \(o_t\) che consiste nello stato \(s_t\) e nella ricompensa \(r_t\). Poi sceglie di compiere l'azione \(a_t\) che causa una transizione nello stato successivo \(s_{t+1}\) che è associato alla ricompensa \(r_{t+1}\) e via così. Lo scopo dell'agente è quello di massimizzare le ricompense accumulate.\\
+
+La somma delle ricompense accumulate è chiamata "ritorno" (o \textit{gain}) e viene definito come \(G_t\). Solitamente introduciamo un fattore di sconto per dare priorità alle ricompense più immediate, definendo quindi il \textit{gain} come:
+\[G_t = r_{t+1} + \gamma r_{t+2} + \gamma^2 r_{t+3} + ... = \sum_{k=0}^\infty \gamma^k r_{t+k+1}\]
+dove \(0 \leq \gamma \leq 1 \) specifica quanta importanza viene data alle ricompense future. La stessa presenza delle ultime rende il compito complesso in quanto è difficile capire quale azione abbia portato alla ricompensa (\textit{credit assignment problem}).\\
+Definiamo quindi una funzione di utilità di un certo stato di ritorno atteso associato a tale stato: \(v(s) = E[G_t | S_t = s]\). \\
+L'equazione di Bellman consente di scomporre l'utilità considerando al ricompensa attuale: \(v(s) 0 E[r_{t+1} + \gamma v(S_{t+1}) | S_t = s]\).\\
+Possiamo quindi apprendere un'approssimazione della funzione di utilità sfruttando l'errore di predizione della ricompensa tra due stati consecutivi: dopo essere passati al nuovo stato, l'utilità dello stato precedente viene aggiornata in modo da allinearla al valore di ricompensa appena ricevuto.\\
+\\
+Nell'essere umano, l'apprendimento per rinforzo avviene grazie ai neuroni dopaminergici, i quali proiettano verso strutture coinvolte nella motivazione e nel comportamento \textit{goal-directed} ma anche verso strutture coinvolte nel controllo emotivo e della memoria.\\
+Sempre i neuroni dopaminergici rispondono con stimolo massimo quando viene somministrato uno stimolo appetitoso, tuttavia, creando un'associazione con stimoli predittivi, i neuroni dopaminergici si attivano al momento dello stimolo condizionante. Inoltre, se poi viene somministrato lo stimolo condizionante ma senza ricompensa, l'attività si riduce sotto il livello basale nel momento in cui sarebbe dovuta avvenire la ricompensa.\\

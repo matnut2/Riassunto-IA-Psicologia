@@ -1,0 +1,67 @@
+\section{Modelli Computazionali in Psicologia}
+Lo scopo di un modello computazionale può essere: rimpiazzare e/o migliorare modelli verbali, sistematizzare i dati sperimentali, testare teorie alternative e generare predizioni.
+
+\subsection{Modelli Connessionisti}
+\paragraph{I modelli connessionisti localistici} sono modelli della prestazione (e non di apprendimento) dove ogni nodo della rete ha un ruolo predefinito e codifica localmente informazioni specifiche. Tutti i livelli di rappresentazione vengono decisi a priori e pone enfasi sulla simulazione di dati comportamentali.
+\paragraph{I modelli connessionisti Parallel Distribuited Processing} pongono enfasi sull'apprendimento di una capacità o compito. Le rappresentazioni sono spesso distribuite su molte unità. Alcuni livelli di rappresentazione possono emergete nella rete durante l'apprendimento senza essere stati definiti a priori ed è possibile simulare dati comportamentali e neuroscentifici.
+
+Normalmente, i modelli connessionisti localistici non apprendono (in quanto connettività e pesi vengono prestabiliti). Ogni nodo della rete corrisponde ad una rappresentazione con un ruolo specifico (una lettera, un numero, una immagine) e i livelli di rappresentazione devono essere decisi a priori.
+Normalmente nei modelli connessionisti PDP si utilizzano algoritmi di apprendimento per le reti neurali, in particolare la back-propagation.
+
+\subsection{Le Tre Fasi della Modellizzazione}
+\begin{enumerate}
+    \item Dalla teoria al modello computazionale: un programma non gira se non pienamente specificato. Bisogna quindi formulare una teoria sui processi cognitivi attraverso un modello computazionale che rileva immediatamente gli aspetti che rendono la teoria incompleta o sotto-specificata;
+    \item Valutazione del modello computazionale: quando un programma gira, possiamo valutare in modo rigoroso l'adeguatezza della teoria, ossia troviamo nel comportamento del modello gli stessi effetti che osserviamo nel comportamento umano;
+    \item Discrepanza tra simulazione e dati empirici: la discrepanza tra dati reali e dati simulati ci rivelano in che modo la teoria di partenza è sbagliata.
+\end{enumerate}
+
+\subsubsection{Valutazione di un Modello}
+Il grado di accuratezza con cui un modello predice un set di dati empirici sia a livello qualitativo che quantitativo si definisce \textbf{adeguatezza descrittiva}.
+L'adeguatezza si può calcolare in due modi:
+\begin{itemize}
+    \item Metodo fattoriale: verifica come variano le rispose del modello in funzione degli stessi fattori sperimentali considerati in uno studio empirico di riferimento. I dati simulati vengono analizzati nello stesso modo in cui viene analizzato un esperimento di psicologia cognitiva, ossia valutando se tutti gli effetti significativi nei dati umani lo sono anche nei dati del modello.
+    \item Metodo della regressione: misura la proporzione di varianza dei dati empirici che viene spiegata dai dati del modello. Operativamente è una regressione dei dati del modello sui dati umani.
+\end{itemize}
+Un modello adeguato non è per forza un modello giusto.\\
+Nella trasformazione ci deve essere completezza (tutti i processi sono stati adeguatamente specificati) e sufficienza (il modello offre una spiegazione di tutti i fenomeni empirici rilevanti), ma questo non garantisce che la teoria sia corretta.\\\\
+Altri criteri di valutazione sono la generalità e la semplicità.
+
+L'approccio computazionale facilita l'aggiudicazione. Se le teoria in competizione sono davvero diverse, lo saranno anche i rispettivi modelli computazionali.
+\begin{enumerate}
+    \item Confrontare l'adeguatezza descrittiva dei diversi modelli (effetti critici spiegati da uno dei due? Proporzione maggiore nei dati umani?)
+    \item Se due modelli sono molto simili dal punto di vista dell'adeguatezza descrittiva, scegliamo in base al criterio della semplicità o al falsificazionismo (individuare una divergenza tra predizioni dei modelli e testarle attraverso uno studio sperimentali su soggetti umani)
+\end{enumerate}
+
+Da ricordare che è necessario esplicitare, giustificare e testare le assunzioni contenute in un modello riguardo processi, apprendimento, rappresentazioni e architettura.
+
+\section{Aspetti Legali delle IA}
+Il regolamento europeo stabilisce che una IA deve:
+\begin{itemize}
+    \item assicurare che i sistemi di IA immessi sul mercato dell’Unione e utilizzati siano sicuri e rispettino la normativa vigente in materia di diritti fondamentali e i valori dell’Unione; 
+    \item assicurare la certezza del diritto per facilitare gli investimenti e l’innovazione nell’IA; 
+    \item migliorare la governance e l’applicazione effettiva della normativa esistente in materia di diritti fondamentali e requisiti di sicurezza applicabili ai sistemi di IA; 
+    \item facilitare lo sviluppo di un mercato unico per applicazioni di IA lecite, sicure e affidabili nonché prevenire la frammentazione del mercato.
+\end{itemize}
+
+Oltre a questo vanno classificati i rischi di sistemi classificati ad alto rischio:
+\begin{itemize}
+    \item utilizzo di set di dati di alta qualità 
+    \item istituzione di una documentazione adeguata per migliorare la tracciabilità condivisione di informazioni adeguate con l’utente 
+    \item progettazione ed attuazione di misure adeguate di sorveglianza umana 
+    \item conseguimento degli standard più elevati in termini di robustezza, sicurezza, cybersicurezza e precisione 
+    \item va istituito, attuato, documentato e mantenuto uno specifico sistema di gestione dei rischi
+\end{itemize}
+
+Una IA viene classificata ad alto rischio quando risulta capace di incidere in modo sensibile sulla salute e sui diritti fondamentali delle persone fisiche:
+\begin{itemize}
+    \item Identificazione e categorizzazione biometrica delle persone fisiche
+    \item Gestione e funzionamento delle infrastrutture critiche 
+    \item Istruzione e formazione professionale 
+    \item Occupazione, gestione dei lavoratori e accesso al lavoro autonomo
+    \item Accesso a prestazioni e servizi pubblici e a servizi privati essenziali e fruizione degli stessi Attività di contrasto (reati, etc.,)
+    \item Gestione della migrazione, dell'asilo e del controllo delle frontiere
+    \item Amministrazione della giustizia e processi democratici
+\end{itemize}
+
+Due fattori critici per mantenere fiducia nei sistemi IA, assicurarne l'utilizzo responsabile e prevenire conseguenze legali sono la trasparenza e la spiegabilità (l'IA deve fornire spiegazioni per decisioni individuali che siamo comprensibili agli utenti).
+

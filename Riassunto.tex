@@ -1,0 +1,61 @@
+\documentclass[12pt, a4paper]{article}
+\usepackage[utf8]{inputenc}
+\usepackage{hyperref}   % PER I LINK INTERNI ED ESTERNI
+\usepackage{graphicx}   % PER LE IMMAGINI
+\usepackage{amsmath}    % PER LE FRAZIONI
+\usepackage{listings}   % PER IL CODICE
+\usepackage{xcolor}     % PER COLORARE IL CODICE
+
+\definecolor{codegreen}{rgb}{0,0.6,0}
+\definecolor{codegray}{rgb}{0.5,0.5,0.5}
+\definecolor{codepurple}{rgb}{0.58,0,0.82}
+\definecolor{backcolour}{rgb}{0.95,0.95,0.92}
+
+\lstdefinestyle{mystyle}{
+    backgroundcolor=\color{backcolour},   
+    commentstyle=\color{codegreen},
+    keywordstyle=\color{magenta},
+    numberstyle=\tiny\color{codegray},
+    stringstyle=\color{codepurple},
+    basicstyle=\ttfamily\footnotesize,
+    breakatwhitespace=false,         
+    breaklines=true,                 
+    captionpos=b,                    
+    keepspaces=true,                 
+    numbers=left,                    
+    numbersep=5pt,                  
+    showspaces=false,                
+    showstringspaces=false,
+    showtabs=false,                  
+    tabsize=2
+}
+
+\lstset{style=mystyle}
+
+\hypersetup{
+    colorlinks=true,
+    linkcolor=black,
+    urlcolor=cyan,
+    }
+
+\title{Intelligenza Artificiale}
+\author{Soldà Matteo }
+\date{A.A. 2021-2022}
+
+\begin{document}
+
+\begin{figure}
+    \centering
+    \includegraphics[width=0.50\textwidth]{Logo_Università_Padova}
+\end{figure}
+
+\maketitle
+\input{capitoli/Capitolo0.tex}
+\input{capitoli/Capitolo1.tex}
+\input{capitoli/Capitolo2.tex}
+\input{capitoli/Capitolo3.tex}
+\input{capitoli/Capitolo4.tex}
+\input{capitoli/Capitolo5.tex}
+\input{capitoli/Capitolo6.tex}
+\input{capitoli/Capitolo7.tex}
+\end{document}
